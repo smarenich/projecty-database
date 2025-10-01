@@ -4,8 +4,8 @@
 -- SICompany
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[SICompany];
-CREATE TABLE [dbo].[SICompany](
-	[TenantID] [int] NOT NULL,
+CREATE TABLE [dbo].[SICompany]
+(
 	[CompanyID] [uniqueidentifier] NOT NULL,
 	[CompanyCD] [nvarchar](30) NOT NULL,
 	[Type] [char](1) NOT NULL,
@@ -13,12 +13,12 @@ CREATE TABLE [dbo].[SICompany](
 	[Description] [nvarchar](60) NULL,
 	[CurrencyID] [nvarchar](5) NULL,
 
-	[tstamp] [rowversion] NULL
-PRIMARY KEY CLUSTERED
-(
-	[TenantID] ASC,
-	[CompanyID] ASC
-))
+	[Version] [rowversion] NULL
+	PRIMARY KEY CLUSTERED
+	(
+		[CompanyID] ASC
+	)
+)
 GO
 ALTER TABLE [dbo].[SICompany] ADD  DEFAULT (newsequentialid()) FOR [CompanyID]
 GO
@@ -28,27 +28,26 @@ GO
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[SICompanyExt];
 CREATE TABLE [dbo].[SICompanyExt](
-	[TenantID] [int] NOT NULL,
 	[RecordID] [uniqueidentifier] NOT NULL,
 	[FieldName] [varchar](30) NOT NULL,
 	[ValueNumeric] [decimal](28, 8) NULL,
 	[ValueDate] [datetime] NULL,
 	[ValueString] [nvarchar](256) NULL,
 	[ValueText] [nvarchar](max) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[TenantID] ASC,
-	[RecordID] ASC,
-	[FieldName] ASC
-))
+	PRIMARY KEY CLUSTERED
+	(
+		[RecordID] ASC,
+		[FieldName] ASC
+	)
+)
 GO
 
 ----------------------------------------------------------------
 -- SICurrencyInfo
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[SICurrencyInfo];
-CREATE TABLE [dbo].[SICurrencyInfo](
-	[TenantID] [int] NOT NULL,
+CREATE TABLE [dbo].[SICurrencyInfo]
+(
 	[CurrencyRateID] [uniqueidentifier] NOT NULL,
 
 	[CurrencyRateTypeID] [nvarchar](6) NULL,
@@ -61,11 +60,10 @@ CREATE TABLE [dbo].[SICurrencyInfo](
 	[RecipRate] [decimal](19, 8) NULL,
 	--[BaseCalc] [bit] NOT NULL, ?
 
-	[tstamp] [rowversion] NULL
+	[Version] [rowversion] NULL
 
 CONSTRAINT [SICurrencyInfo_PK] PRIMARY KEY CLUSTERED
 (
-	[TenantID]	 ASC,
 	[CurrencyRateID] ASC
 ))
 GO
@@ -78,10 +76,9 @@ GO
 DROP TABLE IF EXISTS dbo.SIDate;
 CREATE TABLE dbo.SIDate
 (
-	[TenantID] [int] NOT NULL,
     [Date] [smalldatetime] NOT NULL,
 	[Period] [char](6) NOT NULL
-    CONSTRAINT PK_SIDates PRIMARY KEY CLUSTERED (TenantID, Date)
+    CONSTRAINT PK_SIDates PRIMARY KEY CLUSTERED (Date)
 )
 
 ----------------------------------------------------------------
@@ -90,7 +87,6 @@ CREATE TABLE dbo.SIDate
 DROP TABLE IF EXISTS dbo.SIPeriod;
 CREATE TABLE dbo.SIPeriod
 (
-	[TenantID] [int] NOT NULL,
 	[Period] [char](6) NOT NULL
-    CONSTRAINT PK_SIPeriods PRIMARY KEY CLUSTERED (TenantID, Period)
+    CONSTRAINT PK_SIPeriods PRIMARY KEY CLUSTERED (Period)
 )
