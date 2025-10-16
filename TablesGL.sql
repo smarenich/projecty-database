@@ -1,5 +1,58 @@
 
+----------------------------------------------------------------
+-- GLAccountReportingClass
+----------------------------------------------------------------
+CREATE TABLE [dbo].[GLAccountReportingClass](
+	[AccountReportingClassID] [uniqueidentifier] NOT NULL,
+	[AccountReportingClassCD] [nvarchar](20) NOT NULL,
+	[Descricption] [nvarchar](250) NULL,
+	[IsActive] [bit] NOT NULL,
+	
+	[Type] [char](1) NOT NULL,
+	[SortOrder] [smallint] NULL,
 
+	[CreatedByID] [uniqueidentifier] NOT NULL,
+	[CreatedByScreenID] [char](8) NOT NULL,
+	[CreatedDateTime] [datetime] NOT NULL,
+	[LastModifiedByID] [uniqueidentifier] NOT NULL,
+	[LastModifiedByScreenID] [char](8) NOT NULL,
+	[LastModifiedDateTime] [datetime] NOT NULL,
+	[Version] [rowversion] NULL,
+
+	CONSTRAINT [GLAccountClass_PK] PRIMARY KEY CLUSTERED 
+	(
+		[AccountClassID] ASC
+	)
+)
+GO
+
+----------------------------------------------------------------
+-- GLAccountJobClass
+----------------------------------------------------------------
+CREATE TABLE [dbo].[GLAccountJobClass](
+	[GLAccountJobClassID] [uniqueidentifier] NOT NULL,
+	[GLAccountJobClassCD] [nvarchar](20) NOT NULL,
+	[Description] [nvarchar](250) NULL,
+	[IsActive] [bit] NOT NULL,
+
+	[Type] [char](1) NULL,
+	[ReportGroup] [char](1) NULL,
+	[SortOrder] [smallint] NULL,
+
+	[CreatedByID] [uniqueidentifier] NOT NULL,
+	[CreatedByScreenID] [char](8) NOT NULL,
+	[CreatedDateTime] [datetime] NOT NULL,
+	[LastModifiedByID] [uniqueidentifier] NOT NULL,
+	[LastModifiedByScreenID] [char](8) NOT NULL,
+	[LastModifiedDateTime] [datetime] NOT NULL,
+	[Version] [rowversion] NULL,
+
+	CONSTRAINT [GLAccountJobClass_PK] PRIMARY KEY CLUSTERED 
+	(
+		[GroupID] ASC
+	)
+)
+GO
 ----------------------------------------------------------------
 -- GLAccount
 ----------------------------------------------------------------
@@ -13,7 +66,18 @@ CREATE TABLE [dbo].[GLAccount](
 	[DirectPost] [bit] NOT NULL,
 	[CurrencyID] [nvarchar](5) NULL,
 
-	[Version] [rowversion] NULL
+	--[AccountClassID] [uniqueidentifier] NULL,
+	--[AccountGroupID] [uniqueidentifier] NULL,
+
+	[CreatedByID] [uniqueidentifier] NOT NULL,
+	[CreatedByScreenID] [char](8) NOT NULL,
+	[CreatedDateTime] [datetime] NOT NULL,
+	[LastModifiedByID] [uniqueidentifier] NOT NULL,
+	[LastModifiedByScreenID] [char](8) NOT NULL,
+	[LastModifiedDateTime] [datetime] NOT NULL,
+	[Version] [rowversion] NULL,
+	[DeletedDatabaseRecord] [bit] NOT NULL,
+
 	PRIMARY KEY CLUSTERED
 	(
 		[AccountID] ASC
