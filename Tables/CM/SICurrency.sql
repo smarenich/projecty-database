@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
--- Currency
+-- CMCurrency
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[Currency];
-CREATE TABLE [dbo].[Currency]
+DROP TABLE IF EXISTS [dbo].[CMCurrency];
+CREATE TABLE [dbo].[CMCurrency]
 (
   [CurrencyID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[CurrencyCD] [nvarchar](5) NOT NULL,
@@ -25,19 +25,19 @@ CREATE TABLE [dbo].[Currency]
 	[UnrealizedLossSubID] [int] NULL,
 	[RoundingGainAcctID] [int] NULL,
 	[RoundingGainSubID] [int] NULL,
-  [RoundingLossAcctID] [int] NULL,
+	[RoundingLossAcctID] [int] NULL,
 	[RoundingLossSubID] [int] NULL,
 
 	[RoundingLimit] [decimal](19, 4) NOT NULL DEFAULT (0),
 
-	[CreatedByID] [uniqueidentifier] NOT NULL,
-	[CreatedByScreenID] [char](8) NOT NULL,
-	[CreatedDateTime] [datetime] NOT NULL,
-	[LastModifiedByID] [uniqueidentifier] NOT NULL,
-	[LastModifiedByScreenID] [char](8) NOT NULL,
-	[LastModifiedDateTime] [datetime] NOT NULL,
+	[CreatedByUserID] [uniqueidentifier] NOT NULL,
+	[CreatedFrom] [char](8) NOT NULL,
+	[CreatedAtDateTime] [datetime] NOT NULL,
+	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
+	[UpdatedFrom] [char](8) NOT NULL,
+	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
-	[DeletedRecord] [bit] NOT NULL DEFAULT (0),
+	[Deleted] [bit] NOT NULL DEFAULT (0),
 
 	PRIMARY KEY CLUSTERED
 	(

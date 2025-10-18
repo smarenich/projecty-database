@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
 -- SICurrencyInfo
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[SICurrencyRate];
-CREATE TABLE [dbo].[SICurrencyRate]
+DROP TABLE IF EXISTS [dbo].[CMCurrencyRate];
+CREATE TABLE [dbo].[CMCurrencyRate]
 (
 	[CurrencyRateID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 
@@ -14,12 +14,18 @@ CREATE TABLE [dbo].[SICurrencyRate]
 	[MultDiv] [char](1) NULL,
 	[Rate] [decimal](19, 8) NULL,
 	[RecipRate] [decimal](19, 8) NULL,
-	--[BaseCalc] [bit] NOT NULL, ?
 
-	[Version] [rowversion] NULL
+	[CreatedByUserID] [uniqueidentifier] NOT NULL,
+	[CreatedFrom] [char](8) NOT NULL,
+	[CreatedAtDateTime] [datetime] NOT NULL,
+	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
+	[UpdatedFrom] [char](8) NOT NULL,
+	[UpdatedAtDateTime] [datetime] NOT NULL,
+	[Version] [rowversion] NULL,
 
-CONSTRAINT [SICurrencyInfo_PK] PRIMARY KEY CLUSTERED
-(
-	[CurrencyRateID] ASC
-))
+	CONSTRAINT [SICurrencyInfo_PK] PRIMARY KEY CLUSTERED
+	(
+		[CurrencyRateID] ASC
+	)
+)
 GO

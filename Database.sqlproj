@@ -62,8 +62,10 @@
     <Folder Include="Dimensions" />
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Tables\CM" />
     <Folder Include="Tables\GL" />
     <Folder Include="Tables\SI" />
+    <Folder Include="Tables\SM" />
     <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
@@ -73,15 +75,16 @@
     <Build Include="Dimensions\DimensionByDate.sql" />
     <Build Include="Dimensions\DimensionByPeriod.sql" />
     <Build Include="Dimensions\GLTranXRef.sql" />
+    <Build Include="Tables\CM\SICurrency.sql" />
+    <Build Include="Tables\CM\SICurrencyRate.sql" />
     <Build Include="Tables\GL\GLAccount.sql" />
     <Build Include="Tables\GL\GLAccountJobClass.sql" />
     <Build Include="Tables\GL\GLAccountReportingClass.sql" />
     <Build Include="Tables\GL\GLLedger.sql" />
     <Build Include="Tables\GL\GLTransaction.sql" />
     <Build Include="Tables\SI\SICompany.sql" />
-    <Build Include="Tables\SI\SICurrency.sql" />
-    <Build Include="Tables\SI\SICurrencyInfo.sql" />
     <Build Include="Tables\SI\SIDate.sql" />
+    <Build Include="Tables\SM\User.sql" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />

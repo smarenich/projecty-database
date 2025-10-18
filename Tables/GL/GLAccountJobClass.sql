@@ -1,6 +1,7 @@
 ----------------------------------------------------------------
 -- GLAccountJobClass
 ----------------------------------------------------------------
+DROP TABLE IF EXISTS [dbo].[GLAccountJobClass];
 CREATE TABLE [dbo].[GLAccountJobClass](
 	[GLAccountJobClassID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[GLAccountJobClassCD] [nvarchar](20) NOT NULL,
@@ -11,12 +12,12 @@ CREATE TABLE [dbo].[GLAccountJobClass](
 	[ReportGroup] [char](1) NULL,
 	[SortOrder] [smallint] NULL,
 
-	[CreatedByID] [uniqueidentifier] NOT NULL,
-	[CreatedByScreenID] [char](8) NOT NULL,
-	[CreatedDateTime] [datetime] NOT NULL,
-	[LastModifiedByID] [uniqueidentifier] NOT NULL,
-	[LastModifiedByScreenID] [char](8) NOT NULL,
-	[LastModifiedDateTime] [datetime] NOT NULL,
+	[CreatedByUserID] [uniqueidentifier] NOT NULL,
+	[CreatedFrom] [char](8) NOT NULL,
+	[CreatedAtDateTime] [datetime] NOT NULL,
+	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
+	[UpdatedFrom] [char](8) NOT NULL,
+	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 
 	CONSTRAINT [GLAccountJobClass_PK] PRIMARY KEY CLUSTERED 

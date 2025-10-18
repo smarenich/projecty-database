@@ -26,19 +26,19 @@ CREATE TABLE [dbo].[SICurrency]
 	[UnrealizedLossSubID] [uniqueidentifier] NULL,
 	[RoundingGainAcctID] [uniqueidentifier] NULL,
 	[RoundingGainSubID] [uniqueidentifier] NULL,
-  [RoundingLossAcctID] [uniqueidentifier] NULL,
+	[RoundingLossAcctID] [uniqueidentifier] NULL,
 	[RoundingLossSubID] [uniqueidentifier] NULL,
 
 	[RoundingLimit] [decimal](19, 4) NOT NULL DEFAULT (0),
 
-	[CreatedByID] [uniqueidentifier] NOT NULL,
-	[CreatedByScreenID] [char](8) NOT NULL,
-	[CreatedDateTime] [datetime] NOT NULL,
-	[LastModifiedByID] [uniqueidentifier] NOT NULL,
-	[LastModifiedByScreenID] [char](8) NOT NULL,
-	[LastModifiedDateTime] [datetime] NOT NULL,
+	[CreatedByUserID] [uniqueidentifier] NOT NULL,
+	[CreatedFrom] [char](8) NOT NULL,
+	[CreatedAtDateTime] [datetime] NOT NULL,
+	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
+	[UpdatedFrom] [char](8) NOT NULL,
+	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
-	[DeletedRecord] [bit] NOT NULL DEFAULT (0),
+	[Deleted] [bit] NOT NULL DEFAULT (0),
 
 	PRIMARY KEY CLUSTERED
 	(
