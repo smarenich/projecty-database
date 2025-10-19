@@ -4,7 +4,7 @@ CREATE TABLE [User]
   [UserID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
   [UserCD] [nvarchar](256) NOT NULL,
   [ExtRef] [nvarchar](512) NULL,
-  [Type] [char](1) NOT NULL,
+  [Type] [char](1) NOT NULL, --External / Internal
   [Source] [char](1) NOT NULL,
   [Status] [char](1) NOT NULL,
 
@@ -63,7 +63,19 @@ CREATE TABLE [UserStatistics]
   [FailedPasswordAnswerAttemptCount] [int] NULL,
   [FailedPasswordAnswerAttemptWindowStart] [datetime] NULL,
 
-  CONSTRAINT [User_PK] PRIMARY KEY CLUSTERED 
+  CONSTRAINT [UserStatistics_PK] PRIMARY KEY CLUSTERED 
+  (
+    [UserID] ASC
+  )
+)
+GO
+
+DROP TABLE IF EXISTS [dbo].[UserPreferences];
+CREATE TABLE [UserStatistics]
+(
+  [UserID] [uniqueidentifier],
+
+  CONSTRAINT [UserPreferences_PK] PRIMARY KEY CLUSTERED 
   (
     [UserID] ASC
   )

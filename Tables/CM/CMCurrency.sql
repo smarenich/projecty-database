@@ -4,7 +4,7 @@
 DROP TABLE IF EXISTS [dbo].[CMCurrency];
 CREATE TABLE [dbo].[CMCurrency]
 (
-  [CurrencyID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
+	[CurrencyID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[CurrencyCD] [nvarchar](5) NOT NULL,
 
 	[RealizedGainAcctID] [int] NULL,
