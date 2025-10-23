@@ -5,9 +5,9 @@ DROP TABLE IF EXISTS [dbo].[GLAccountReportingClass];
 CREATE TABLE [dbo].[GLAccountReportingClass](
 	[AccountReportingClassID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[AccountReportingClassCD] [nvarchar](20) NOT NULL,
-	[Descricption] [nvarchar](250) NULL,
+	[Description] [nvarchar](250) NULL,
 	[IsActive] [bit] NOT NULL,
-	
+
 	[Type] [char](1) NOT NULL,
 	[SortOrder] [smallint] NULL,
 
@@ -19,9 +19,13 @@ CREATE TABLE [dbo].[GLAccountReportingClass](
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 
-	CONSTRAINT [GLAccountClass_PK] PRIMARY KEY CLUSTERED 
+	CONSTRAINT [GLAccountReportingClass_PK] PRIMARY KEY CLUSTERED
 	(
-		[AccountClassID] ASC
+		[AccountReportingClassID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[AccountReportingClassCD] ASC
 	)
 )
 GO

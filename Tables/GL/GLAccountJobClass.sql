@@ -20,9 +20,13 @@ CREATE TABLE [dbo].[GLAccountJobClass](
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 
-	CONSTRAINT [GLAccountJobClass_PK] PRIMARY KEY CLUSTERED 
+	CONSTRAINT [GLAccountJobClass_PK] PRIMARY KEY CLUSTERED
 	(
-		[GroupID] ASC
+		[GLAccountJobClassID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[GLAccountJobClassCD] ASC
 	)
 )
 GO

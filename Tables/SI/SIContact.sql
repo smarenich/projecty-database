@@ -43,7 +43,7 @@ CREATE TABLE [dbo].[SIContact]
 	[Spouse] [nvarchar](255) NULL,
 	[Img] [nvarchar](max) NULL,
 
-	--Categarozatopn
+	--Categorization
 	[SalesTerritoryID] [nvarchar](15) NULL,
 	[Source] [char](1) NULL,
 	[CampaignID] [nvarchar](15) NULL,
@@ -75,13 +75,13 @@ CREATE TABLE [dbo].[SIContact]
 	(
 		[ContactClass] ASC,
 		[ContactID] ASC
-	),
+	)
 )
 GO
 
-CREATE NONCLUSTERED INDEX [SIAddress_ReferenceEntity] ON [dbo].[SIAddress]
+CREATE NONCLUSTERED INDEX [SIContact_ReferenceEntity] ON [dbo].[SIContact]
 (
-	[AddressClass] ASC,
+	[ContactClass] ASC,
 	[ParentRecordID] ASC
 )
 GO

@@ -1,10 +1,12 @@
-CREATE TABLE [dbo].[RecordComment]
+DROP TABLE IF EXISTS [dbo].[SMPreferencesGeneral];
+CREATE TABLE [dbo].[SMPreferencesGeneral]
 (
-  [RecordID] [uniqueidentifier] NOT NULL PRIMARY KEY,
-  
-  [Comment] [nvarchar](max) NOT NULL,
-
-  --System
+  [MaxUploadSize] [int] NOT NULL,
+  [TimeZone] [varchar](32) NULL,
+  [HomePage] [uniqueidentifier] NULL, 
+  [PersonNameFormat] [varchar](20) NULL,
+    
+	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
@@ -12,10 +14,4 @@ CREATE TABLE [dbo].[RecordComment]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
-	[Deleted] [bit] NOT NULL DEFAULT (0),
-
-  CONSTRAINT [SIRecordInfo_PK] PRIMARY KEY CLUSTERED
-	(
-		[RecordID] ASC
-	),
 )

@@ -6,7 +6,7 @@ CREATE TABLE [dbo].[SINumbering]
 (
 	[NumberingID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[NumberingCD] [nvarchar](20) NOT NULL,
-	[Descricption] [nvarchar](60) NULL,
+	[Description] [nvarchar](60) NULL,
 	[IsActive] [bit] NOT NULL DEFAULT (0),
 	--[NewSymbol] [nvarchar](15) NULL,
 
@@ -22,6 +22,10 @@ CREATE TABLE [dbo].[SINumbering]
 	CONSTRAINT [SINumbering_PK] PRIMARY KEY CLUSTERED
 	(
 		[NumberingID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[NumberingCD] ASC
 	)
 )
 GO  

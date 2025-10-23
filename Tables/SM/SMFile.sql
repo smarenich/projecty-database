@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS [dbo].[File];
-CREATE TABLE [dbo].[File]
+DROP TABLE IF EXISTS [dbo].[SMFile];
+CREATE TABLE [dbo].[SMFile]
 (
   [FileID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),	
   [Name] [nvarchar](255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[File]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-  CONSTRAINT [File_PK] PRIMARY KEY CLUSTERED 
+  CONSTRAINT [SMFile_PK] PRIMARY KEY CLUSTERED 
   (
     [FileID] ASC
   )

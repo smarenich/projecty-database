@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS [dbo].[User];
-CREATE TABLE [User]
+DROP TABLE IF EXISTS [dbo].[SMUser];
+CREATE TABLE [dbo].[SMUser]
 (
   [UserID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
   [UserCD] [nvarchar](256) NOT NULL,
@@ -32,52 +32,14 @@ CREATE TABLE [User]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-  CONSTRAINT [User_PK] PRIMARY KEY CLUSTERED 
+  CONSTRAINT [SMUser_PK] PRIMARY KEY CLUSTERED
   (
     [UserID] ASC
   )
 )
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [User_UK] ON [Users] 
+CREATE UNIQUE NONCLUSTERED INDEX [SMUser_UK] ON [dbo].[SMUser]
 (
   [UserCD] ASC
-)
-GO
-
-DROP TABLE IF EXISTS [dbo].[UserStatistics];
-CREATE TABLE [UserStatistics]
-(
-  [UserID] [uniqueidentifier],
-
-  [IsOnLine] [bit] NOT NULL,
-
-  [LastHostName] [varchar](50) NULL,
-  [LastActivityDate] [datetime] NULL,
-  [LastLoginDate] [datetime] NULL,
-  [LastPasswordChangedDate] [datetime] NULL,
-
-  [LockedOutDate] [datetime] NULL,
-  [LastLockedOutDate] [datetime] NULL,
-  [FailedPasswordAttemptCount] [int] NULL,
-  [FailedPasswordAttemptWindowStart] [datetime] NULL,
-  [FailedPasswordAnswerAttemptCount] [int] NULL,
-  [FailedPasswordAnswerAttemptWindowStart] [datetime] NULL,
-
-  CONSTRAINT [UserStatistics_PK] PRIMARY KEY CLUSTERED 
-  (
-    [UserID] ASC
-  )
-)
-GO
-
-DROP TABLE IF EXISTS [dbo].[UserPreferences];
-CREATE TABLE [UserStatistics]
-(
-  [UserID] [uniqueidentifier],
-
-  CONSTRAINT [UserPreferences_PK] PRIMARY KEY CLUSTERED 
-  (
-    [UserID] ASC
-  )
 )
 GO

@@ -1,5 +1,5 @@
 ----------------------------------------------------------------
--- SICurrencyInfo
+-- CMCurrencyRate
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[CMCurrencyRate];
 CREATE TABLE [dbo].[CMCurrencyRate]
@@ -9,7 +9,7 @@ CREATE TABLE [dbo].[CMCurrencyRate]
 	[CurrencyRateTypeID] [nvarchar](6) NULL,
 	[FromCurrencyID] [nvarchar](5) NULL,
 	[ToCurrencyID] [nvarchar](5) NULL,
-	
+
 	[EffDate] [smalldatetime] NULL,
 	[MultDiv] [char](1) NULL,
 	[Rate] [decimal](19, 8) NULL,
@@ -23,7 +23,7 @@ CREATE TABLE [dbo].[CMCurrencyRate]
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 
-	CONSTRAINT [SICurrencyInfo_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [CMCurrencyRate_PK] PRIMARY KEY CLUSTERED
 	(
 		[CurrencyRateID] ASC
 	)

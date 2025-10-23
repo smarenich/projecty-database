@@ -30,6 +30,7 @@ CREATE TABLE [dbo].[CMCurrency]
 
 	[RoundingLimit] [decimal](19, 4) NOT NULL DEFAULT (0),
 
+	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,

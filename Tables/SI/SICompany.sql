@@ -20,10 +20,13 @@ CREATE TABLE [dbo].[SICompany]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL,
 
-
 	PRIMARY KEY CLUSTERED
 	(
 		[CompanyID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[CompanyCD] ASC
 	)
 )
 GO

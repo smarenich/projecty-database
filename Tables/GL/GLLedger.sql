@@ -9,6 +9,9 @@ CREATE TABLE [dbo].[GLLedger](
 	[Description] [nvarchar](60) NULL,
 	[BaseCurrencyID] [nvarchar](5) NULL,
 
+	[BalanceType] char(1) not null,
+  	[BranchID] int null,
+
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
@@ -21,6 +24,10 @@ CREATE TABLE [dbo].[GLLedger](
 	PRIMARY KEY CLUSTERED
 	(
 		[LedgerID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[LedgerCD] ASC
 	)
 )
 GO

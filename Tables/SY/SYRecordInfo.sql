@@ -1,12 +1,12 @@
-DROP TABLE IF EXISTS [dbo].[RecordInfo];
-CREATE TABLE [dbo].[RecordInfo]
+DROP TABLE IF EXISTS [dbo].[SYRecordInfo];
+CREATE TABLE [dbo].[SYRecordInfo]
 (
-  [RecordID] [uniqueidentifier] NOT NULL PRIMARY KEY,
-  
+  [RecordID] [uniqueidentifier] NOT NULL,
+
   --Technical Info
-  [RecordType] [Char](1) NOT NULL, --Parent/Detaild
+  [RecordType] [Char](1) NOT NULL, --Parent/Detail
   [EntityType] [varchar](255) NULL,
-  [BusinessOjectType] [varchar](255) NULL,
+  [BusinessObjectType] [varchar](255) NULL,
   --[ExternalKey] [nvarchar](255) NULL, --Key for Integrations
 
   --Public Info
@@ -14,15 +14,16 @@ CREATE TABLE [dbo].[RecordInfo]
  	[WorkgroupID] [int] NULL,
 	[OwnerID] [int] NULL,
 
-  --Search 
+  --Search
   [Category] [int] NOT NULL,
 	[Content] [nvarchar] (MAX) NOT NULL,
 
   --System
   [Version] [rowversion] NULL,
 
-  CONSTRAINT [RecordInfo_PK] PRIMARY KEY CLUSTERED
+  CONSTRAINT [SYRecordInfo_PK] PRIMARY KEY CLUSTERED
 	(
 		[RecordID] ASC
-	),
+	)
 )
+GO

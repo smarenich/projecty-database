@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS [dbo].[FileRevision];
-CREATE TABLE [dbo].[FileRevision]
+DROP TABLE IF EXISTS [dbo].[SMFileRevision];
+CREATE TABLE [dbo].[SMFileRevision]
 (
   [FileID] [uniqueidentifier] NOT NULL,
   [FileRevisionID] [int] NOT NULL,
@@ -22,9 +22,10 @@ CREATE TABLE [dbo].[FileRevision]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-  CONSTRAINT [File_PK] PRIMARY KEY CLUSTERED 
+  CONSTRAINT [SMFileRevision_PK] PRIMARY KEY CLUSTERED
   (
-    [FileID] ASC
+    [FileID] ASC,
+    [FileRevisionID] ASC
   )
 )
 GO

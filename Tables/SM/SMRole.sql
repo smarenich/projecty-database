@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS [dbo].[Role];
-CREATE TABLE [dbo].[Role]
+DROP TABLE IF EXISTS [dbo].[SMRole];
+CREATE TABLE [dbo].[SMRole]
 (
   [RoleID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),	
   [RoleCD] [nvarchar](64) NOT NULL,
@@ -15,13 +15,13 @@ CREATE TABLE [dbo].[Role]
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 
-  CONSTRAINT [Role_PK] PRIMARY KEY CLUSTERED 
+  CONSTRAINT [SMRole_PK] PRIMARY KEY CLUSTERED 
   (
     [RoleID] ASC
   )
 )
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [Role_UK] ON [Role] 
+CREATE UNIQUE NONCLUSTERED INDEX [SMRole_UK] ON [dbo].[SMRole]
 (
   [RoleCD] ASC
 )

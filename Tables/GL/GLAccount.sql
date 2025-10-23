@@ -26,6 +26,10 @@ CREATE TABLE [dbo].[GLAccount](
 	PRIMARY KEY CLUSTERED
 	(
 		[AccountID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[AccountCD] ASC
 	)
 )
 GO

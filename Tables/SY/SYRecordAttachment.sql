@@ -1,9 +1,10 @@
-CREATE TABLE [dbo].[RecordAttachment]
+DROP TABLE IF EXISTS [dbo].[SYRecordAttachment];
+CREATE TABLE [dbo].[SYRecordAttachment]
 (
-  [RecordID] [uniqueidentifier] NOT NULL PRIMARY KEY,  
-  [FileID] [uniqueidentifier] NOT NULL,
+	[RecordID] [uniqueidentifier] NOT NULL,
+	[FileID] [uniqueidentifier] NOT NULL,
 
-  --System
+	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
@@ -11,8 +12,9 @@ CREATE TABLE [dbo].[RecordAttachment]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 
-  CONSTRAINT [SIRecordInfo_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [SYRecordAttachment_PK] PRIMARY KEY CLUSTERED
 	(
 		[RecordID] ASC
-	),
+	)
 )
+GO
