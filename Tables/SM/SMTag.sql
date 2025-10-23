@@ -1,11 +1,14 @@
+----------------------------------------------------------------
+-- SMTag
+----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[SMTag];
 CREATE TABLE [dbo].[SMTag]
 (
-  [TagID] [uniqueidentifier] NOT NULL,
-  [TagCD] [nvarchar](10) NOT NULL, 
-  
-  [Type] [char](1) NULL,
-  [Description] [nvarchar](256) NULL,
+	[TagID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
+	[TagCD] [nvarchar](10) NOT NULL,
+
+	[Type] [char](1) NULL,
+	[Description] [nvarchar](256) NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
@@ -17,14 +20,13 @@ CREATE TABLE [dbo].[SMTag]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-  CONSTRAINT [SMTag_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [SMTag_PK] PRIMARY KEY CLUSTERED
 	(
-		[RecordID] ASC
+		[TagID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[TagCD] ASC
 	)
-)
-GO
-CREATE UNIQUE INDEX [SMTag_TagCD] ON [dbo].[SMTag]
-(
-	[TagCD] ASC
 )
 GO

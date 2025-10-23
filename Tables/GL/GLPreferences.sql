@@ -1,17 +1,20 @@
+----------------------------------------------------------------
+-- GLPreferences
+----------------------------------------------------------------
+DROP TABLE IF EXISTS [dbo].[GLPreferences];
 CREATE TABLE [dbo].[GLPreferences]
 (
-  [LedgerID] [uniqueidentifier]  null,
+	[LedgerID] [uniqueidentifier] NULL,
+	[BatchNumberingID] [uniqueidentifier] NOT NULL,
 
-  [BatchNumberingID] [uniqueidentifier] not null,
+	[RequireControlTotal] [bit] NOT NULL,
+	[COAOrder] [smallint] NOT NULL,
+	[TrialBalanceSign] [char](1) NOT NULL DEFAULT ('N'),
 
-  [RequireControlTotal] bit not null,
-  [COAOrder] smallint not null,
-  [TrialBalanceSign] char(1) default 'N' not null,
+	[YtdNetIncAccountID] [uniqueidentifier] NOT NULL,
+	[RetEarnAccountID] [uniqueidentifier] NOT NULL,
 
-  [YtdNetIncAccountID] [uniqueidentifier] not null,
-  [RetEarnAccountID] [uniqueidentifier] not null,
-
-  	--System
+	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
@@ -21,3 +24,4 @@ CREATE TABLE [dbo].[GLPreferences]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 )
+GO

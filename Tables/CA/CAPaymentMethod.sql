@@ -1,11 +1,20 @@
+----------------------------------------------------------------
+-- CAPaymentMethod
+----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[CAPaymentMethod];
 CREATE TABLE [dbo].[CAPaymentMethod]
 (
-	[CurrencyID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[CurrencyCD] [nvarchar](5) NOT NULL,
+	[PaymentMethodID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
+	[PaymentMethodCD] [nvarchar](10) NOT NULL,
+	[Description] [nvarchar](60) NULL,
 
-  --System
-  [CreatedByUserID] [uniqueidentifier] NOT NULL,
+	[IsActive] [bit] NOT NULL DEFAULT (1),
+	[PaymentType] [char](1) NOT NULL,
+	[UseInAP] [bit] NOT NULL DEFAULT (0),
+	[UseInAR] [bit] NOT NULL DEFAULT (0),
+
+	--System
+	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
 	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
@@ -14,12 +23,13 @@ CREATE TABLE [dbo].[CAPaymentMethod]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-	PRIMARY KEY CLUSTERED
+	CONSTRAINT [CAPaymentMethod_PK] PRIMARY KEY CLUSTERED
 	(
-		[CurrencyID] ASC
+		[PaymentMethodID] ASC
 	),
 	UNIQUE NONCLUSTERED
 	(
-		[CurrencyCD] ASC
+		[PaymentMethodCD] ASC
 	)
 )
+GO

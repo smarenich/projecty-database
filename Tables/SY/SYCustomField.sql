@@ -1,13 +1,16 @@
+----------------------------------------------------------------
+-- SYCustomField
+----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[SYCustomField];
 CREATE TABLE [dbo].[SYCustomField]
 (
-  [CustomFieldID] [uniqueidentifier] NOT NULL,
-  [CustomFieldCD] [nvarchar](10) NOT NULL, --Parent/Detail
-  [Description] [varchar](255) NULL,
+	[CustomFieldID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
+	[CustomFieldCD] [nvarchar](10) NOT NULL,
+	[Description] [varchar](255) NULL,
 
-  [DataTypeID] [uniqueidentifier] NOT NULL,
-  [RegExp] [nvarchar](255) NULL,
-  [EntryMask] [varchar](60) NULL,
+	[DataTypeID] [uniqueidentifier] NOT NULL,
+	[RegExp] [nvarchar](255) NULL,
+	[EntryMask] [varchar](60) NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
@@ -19,14 +22,13 @@ CREATE TABLE [dbo].[SYCustomField]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-  CONSTRAINT [SYCustomField_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [SYCustomField_PK] PRIMARY KEY CLUSTERED
 	(
 		[CustomFieldID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[CustomFieldCD] ASC
 	)
-)
-GO
-CREATE UNIQUE INDEX [SYCustomField_CustomFieldCD] ON [dbo].[SYCustomField]
-(
-	[CustomFieldCD] ASC
 )
 GO

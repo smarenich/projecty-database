@@ -4,26 +4,26 @@
 DROP TABLE IF EXISTS [dbo].[GLFinPeriod];
 CREATE TABLE [dbo].[GLFinPeriod]
 (
-  [FinPeriodID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
+	[FinPeriodID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[FinPeriodCD] [nvarchar](5) NOT NULL,
-  [Description] nvarchar(60) null,
+	[Description] [nvarchar](60) NULL,
 
-  [OrganizationID] int not null,
-  [Status] char(1) not null,
+	[OrganizationID] [uniqueidentifier] NOT NULL,
+	[Status] [char](1) NOT NULL,
 
-  [StartDate] smalldatetime not null,
-  [EndDate] smalldatetime not null,
-  [FinYear] char(4) not null,
-  [PeriodNbr] char(2) not null,
+	[StartDate] [smalldatetime] NOT NULL,
+	[EndDate] [smalldatetime] NOT NULL,
+	[FinYear] [char](4) NOT NULL,
+	[PeriodNumber] [char](2) NOT NULL,
 
-  [APClosed] bit default 0 not null,
-  [ARClosed] bit default 0 not null,
-  [INClosed] bit default 0 not null,
-  [CAClosed] bit default 0 not null,
-  [FAClosed] bit default 0 not null,
-  [PRClosed] bit default 0 not null,
+	[APClosed] [bit] NOT NULL DEFAULT (0),
+	[ARClosed] [bit] NOT NULL DEFAULT (0),
+	[INClosed] [bit] NOT NULL DEFAULT (0),
+	[CAClosed] [bit] NOT NULL DEFAULT (0),
+	[FAClosed] [bit] NOT NULL DEFAULT (0),
+	[PRClosed] [bit] NOT NULL DEFAULT (0),
 
-  	--System
+	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE [dbo].[GLFinPeriod]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-	PRIMARY KEY CLUSTERED
+	CONSTRAINT [GLFinPeriod_PK] PRIMARY KEY CLUSTERED
 	(
 		[FinPeriodID] ASC
 	),
@@ -42,3 +42,4 @@ CREATE TABLE [dbo].[GLFinPeriod]
 		[FinPeriodCD] ASC
 	)
 )
+GO

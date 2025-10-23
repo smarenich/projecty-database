@@ -1,13 +1,16 @@
+----------------------------------------------------------------
+-- CMCurrencyRateType
+----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[CMCurrencyRateType];
 CREATE TABLE [dbo].[CMCurrencyRateType]
 (
 	[CMCurrencyRateTypeID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[CMCurrencyRateTypeCD] [nvarchar](5) NOT NULL,
-  [Description] [nvarchar](512) NULL,
+	[Description] [nvarchar](512) NULL,
 
-  [RefreshOnline] bit default 0 not null,
-  --[OnlineRateAdjustment] decimal(19,8) null,
-  [RateEffDays] smallint not null,
+	[RefreshOnline] [bit] NOT NULL DEFAULT (0),
+	--[OnlineRateAdjustment] [decimal](19,8) NULL,
+	[RateEffDays] [smallint] NOT NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
@@ -19,14 +22,14 @@ CREATE TABLE [dbo].[CMCurrencyRateType]
 	[Version] [rowversion] NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-	CONSTRAINT [SIAddress_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [CMCurrencyRateType_PK] PRIMARY KEY CLUSTERED
 	(
 		[CMCurrencyRateTypeID] ASC
 	),
-  CONSTRAINT [SIAddress_CMCurrencyRateType] UNIQUE NONCLUSTERED
-  (
-    [CMCurrencyRateTypeCD] ASC
-  )
+	CONSTRAINT [CMCurrencyRateType_UK] UNIQUE NONCLUSTERED
+	(
+		[CMCurrencyRateTypeCD] ASC
+	)
 )
 GO
 
