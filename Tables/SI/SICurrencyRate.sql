@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[SICurrencyRate]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	PRIMARY KEY CLUSTERED
 	(

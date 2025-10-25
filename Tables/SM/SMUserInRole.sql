@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[SMUserInRole]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
   CONSTRAINT [SMUserInRole_PK] PRIMARY KEY CLUSTERED
   (

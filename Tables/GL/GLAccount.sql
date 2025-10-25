@@ -8,11 +8,11 @@ CREATE TABLE [dbo].[GLAccount](
 	[Type] [char](1) NOT NULL,
 	[Active] [bit] NOT NULL,
 	[Description] [nvarchar](60) NULL,
+
 	[DirectPost] [bit] NOT NULL,
 	[CurrencyID] [nvarchar](5) NULL,
-
-	--[AccountClassID] [uniqueidentifier] NULL,
-	--[AccountGroupID] [uniqueidentifier] NULL,
+	[AccountClassID] [uniqueidentifier] NULL,
+	[AccountGroupID] [uniqueidentifier] NULL,
 
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[GLAccount](
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 	[Deleted] [bit] NOT NULL,
 
 	PRIMARY KEY CLUSTERED

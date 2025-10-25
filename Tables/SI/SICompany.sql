@@ -18,6 +18,7 @@ CREATE TABLE [dbo].[SICompany]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 	[Deleted] [bit] NOT NULL,
 
 	PRIMARY KEY CLUSTERED

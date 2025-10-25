@@ -30,6 +30,7 @@ CREATE TABLE [dbo].[SMLocale]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	CONSTRAINT [SMLocale_PK] PRIMARY KEY CLUSTERED
 	(

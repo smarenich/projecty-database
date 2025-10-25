@@ -22,6 +22,7 @@ CREATE TABLE [dbo].[CMCurrencyRate]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	CONSTRAINT [CMCurrencyRate_PK] PRIMARY KEY CLUSTERED
 	(

@@ -62,6 +62,7 @@ CREATE TABLE [dbo].[APTranPost]
 	[GLSign] [smallint] NOT NULL,
 
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	CONSTRAINT [APTranPost_PK] PRIMARY KEY CLUSTERED
 	(

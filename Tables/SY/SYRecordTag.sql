@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[SYRecordTag]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	CONSTRAINT [SYRecordTag_PK] PRIMARY KEY CLUSTERED
 	(

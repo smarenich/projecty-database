@@ -20,6 +20,7 @@ CREATE TABLE [dbo].[SYCustomField]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
 	CONSTRAINT [SYCustomField_PK] PRIMARY KEY CLUSTERED

@@ -17,5 +17,6 @@ CREATE TABLE [dbo].[SMPreferencesGeneral]
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 )
 GO

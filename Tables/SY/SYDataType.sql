@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[SYDataType]
 
 	--System
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	CONSTRAINT [SYDataType_PK] PRIMARY KEY CLUSTERED
 	(

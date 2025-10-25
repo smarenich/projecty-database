@@ -20,6 +20,7 @@ CREATE TABLE [dbo].[GLLedger](
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Deleted] [bit] NOT NULL,
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	PRIMARY KEY CLUSTERED
 	(

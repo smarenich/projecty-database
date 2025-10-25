@@ -85,6 +85,7 @@
     <Build Include="Tables\CM\CMCurrency.sql" />
     <Build Include="Tables\CM\CMCurrencyRate.sql" />
     <Build Include="Tables\CM\CMCurrencyRateType.sql" />
+    <Build Include="Tables\CS\CSBranch.sql" />
     <Build Include="Tables\CS\CSTerms.sql" />
     <Build Include="Tables\GL\GLAccount.sql" />
     <Build Include="Tables\GL\GLAccountJobClass.sql" />

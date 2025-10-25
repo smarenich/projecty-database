@@ -23,6 +23,7 @@ CREATE TABLE [dbo].[SYRecordInfo]
 
 	--System
 	[Version] [rowversion] NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	CONSTRAINT [SYRecordInfo_PK] PRIMARY KEY CLUSTERED
 	(
