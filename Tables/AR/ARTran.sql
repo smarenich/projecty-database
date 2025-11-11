@@ -255,6 +255,21 @@ CREATE NONCLUSTERED INDEX [ARTran_SOOrder] ON [dbo].[ARTran] ([SOOrderType], [SO
 GO
 
 ----------------------------------------------------------------
+-- ARTran Foreign Keys
+----------------------------------------------------------------
+ALTER TABLE [dbo].[ARTran] ADD CONSTRAINT [FK_ARTran_Account]
+    FOREIGN KEY ([AccountID]) REFERENCES [dbo].[GLAccount]([AccountID]);
+GO
+
+ALTER TABLE [dbo].[ARTran] ADD CONSTRAINT [FK_ARTran_Customer]
+    FOREIGN KEY ([CustomerID]) REFERENCES [dbo].[SICompany]([CompanyID]);
+GO
+
+ALTER TABLE [dbo].[ARTran] ADD CONSTRAINT [FK_ARTran_Inventory]
+    FOREIGN KEY ([InventoryID]) REFERENCES [dbo].[INItem]([ItemID]);
+GO
+
+----------------------------------------------------------------
 -- ARTranExt
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[ARTranExt];

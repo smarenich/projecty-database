@@ -81,6 +81,13 @@ CREATE NONCLUSTERED INDEX [GLBatch_Period] ON [dbo].[GLBatch] ([FinPeriodID], [T
 GO
 
 ----------------------------------------------------------------
+-- GLBatch Foreign Keys
+----------------------------------------------------------------
+ALTER TABLE [dbo].[GLBatch] ADD CONSTRAINT [FK_GLBatch_Ledger]
+    FOREIGN KEY ([LedgerID]) REFERENCES [dbo].[GLLedger]([LedgerID]);
+GO
+
+----------------------------------------------------------------
 -- GLTransactionExt
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[GLBatchExt];

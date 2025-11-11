@@ -172,6 +172,17 @@ CREATE NONCLUSTERED INDEX [ARRegister_Status] ON [dbo].[ARRegister] ([Status], [
 GO
 
 ----------------------------------------------------------------
+-- ARRegister Foreign Keys
+----------------------------------------------------------------
+ALTER TABLE [dbo].[ARRegister] ADD CONSTRAINT [FK_ARRegister_ARAccount]
+    FOREIGN KEY ([ARAccountID]) REFERENCES [dbo].[GLAccount]([AccountID]);
+GO
+
+ALTER TABLE [dbo].[ARRegister] ADD CONSTRAINT [FK_ARRegister_Customer]
+    FOREIGN KEY ([CustomerID]) REFERENCES [dbo].[SICompany]([CompanyID]);
+GO
+
+----------------------------------------------------------------
 -- ARRegisterExt
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[ARRegisterExt];

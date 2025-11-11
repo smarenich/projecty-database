@@ -124,6 +124,20 @@ GO
 CREATE NONCLUSTERED INDEX [APTran_Inventory] ON [dbo].[APTran] ([InventoryID], [SiteID])
 GO
 
+----------------------------------------------------------------
+-- APTran Foreign Keys
+----------------------------------------------------------------
+ALTER TABLE [dbo].[APTran] ADD CONSTRAINT [FK_APTran_Account]
+    FOREIGN KEY ([AccountID]) REFERENCES [dbo].[GLAccount]([AccountID]);
+GO
+
+ALTER TABLE [dbo].[APTran] ADD CONSTRAINT [FK_APTran_Vendor]
+    FOREIGN KEY ([VendorID]) REFERENCES [dbo].[SICompany]([CompanyID]);
+GO
+
+ALTER TABLE [dbo].[APTran] ADD CONSTRAINT [FK_APTran_Item]
+    FOREIGN KEY ([ItemID]) REFERENCES [dbo].[INItem]([ItemID]);
+GO
 
 ----------------------------------------------------------------
 -- APTranExt

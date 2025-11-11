@@ -87,6 +87,25 @@ CREATE NONCLUSTERED INDEX [GLTransaction_Axis] ON dbo.GLTransaction (BranchID, L
 GO
 
 ----------------------------------------------------------------
+-- GLTransaction Foreign Keys
+----------------------------------------------------------------
+ALTER TABLE [dbo].[GLTransaction] ADD CONSTRAINT [FK_GLTransaction_Account]
+    FOREIGN KEY ([AccountID]) REFERENCES [dbo].[GLAccount]([AccountID]);
+GO
+
+ALTER TABLE [dbo].[GLTransaction] ADD CONSTRAINT [FK_GLTransaction_Ledger]
+    FOREIGN KEY ([LedgerID]) REFERENCES [dbo].[GLLedger]([LedgerID]);
+GO
+
+ALTER TABLE [dbo].[GLTransaction] ADD CONSTRAINT [FK_GLTransaction_Company]
+    FOREIGN KEY ([CompanyID]) REFERENCES [dbo].[SICompany]([CompanyID]);
+GO
+
+ALTER TABLE [dbo].[GLTransaction] ADD CONSTRAINT [FK_GLTransaction_Inventory]
+    FOREIGN KEY ([InventoryID]) REFERENCES [dbo].[INItem]([ItemID]);
+GO
+
+----------------------------------------------------------------
 -- GLTransactionExt
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[GLTransactionExt];

@@ -116,6 +116,21 @@ CREATE NONCLUSTERED INDEX [APRegister_Status] ON [dbo].[APRegister] ([Status], [
 GO
 
 ----------------------------------------------------------------
+-- APRegister Foreign Keys
+----------------------------------------------------------------
+ALTER TABLE [dbo].[APRegister] ADD CONSTRAINT [FK_APRegister_APAccount]
+    FOREIGN KEY ([APAccountID]) REFERENCES [dbo].[GLAccount]([AccountID]);
+GO
+
+ALTER TABLE [dbo].[APRegister] ADD CONSTRAINT [FK_APRegister_Ledger]
+    FOREIGN KEY ([LedgerID]) REFERENCES [dbo].[GLLedger]([LedgerID]);
+GO
+
+ALTER TABLE [dbo].[APRegister] ADD CONSTRAINT [FK_APRegister_Vendor]
+    FOREIGN KEY ([VendorID]) REFERENCES [dbo].[SICompany]([CompanyID]);
+GO
+
+----------------------------------------------------------------
 -- APRegisterExt
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[APRegisterExt];
