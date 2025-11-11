@@ -68,6 +68,7 @@
     <Folder Include="Tables\CM" />
     <Folder Include="Tables\CS" />
     <Folder Include="Tables\GL" />
+    <Folder Include="Tables\IN" />
     <Folder Include="Tables\SI" />
     <Folder Include="Tables\SM" />
     <Folder Include="Tables\SY" />
@@ -80,7 +81,18 @@
     <Build Include="Dimensions\DimensionByDate.sql" />
     <Build Include="Dimensions\DimensionByPeriod.sql" />
     <Build Include="Dimensions\GLTranXRef.sql" />
+    <Build Include="Tables\AP\APAdjust.sql" />
+    <Build Include="Tables\AP\APInvoice.sql" />
+    <Build Include="Tables\AP\APPayment.sql" />
+    <Build Include="Tables\AP\APRegister.sql" />
+    <Build Include="Tables\AP\APTran.sql" />
     <Build Include="Tables\AP\APTranPost.sql" />
+    <Build Include="Tables\AR\ARAdjust.sql" />
+    <Build Include="Tables\AR\ARInvoice.sql" />
+    <Build Include="Tables\AR\ARPayment.sql" />
+    <Build Include="Tables\AR\ARRegister.sql" />
+    <Build Include="Tables\AR\ARTran.sql" />
+    <Build Include="Tables\AR\ARTranPost.sql" />
     <Build Include="Tables\CA\CAPaymentMethod.sql" />
     <Build Include="Tables\CM\CMCurrency.sql" />
     <Build Include="Tables\CM\CMCurrencyRate.sql" />
@@ -95,6 +107,8 @@
     <Build Include="Tables\GL\GLLedger.sql" />
     <Build Include="Tables\GL\GLPreferences.sql" />
     <Build Include="Tables\GL\GLTransaction.sql" />
+    <Build Include="Tables\IN\INItem.sql" />
+    <Build Include="Tables\IN\INWarehouse.sql" />
     <Build Include="Tables\SI\SIActivity.sql" />
     <Build Include="Tables\SI\SIAddress.sql" />
     <Build Include="Tables\SI\SICompany.sql" />

@@ -49,9 +49,9 @@ CREATE TABLE [dbo].[GLBatch]
 	[ControlTotal] [decimal](28, 8) NULL,
 
 	--Totals (Transaction Currency)
-	[CuryCreditTotal] [decimal](28, 8) NULL,
-	[CuryDebitTotal] [decimal](28, 8) NULL,
-	[CuryControlTotal] [decimal](28, 8) NULL,
+	[CreditTotalCury] [decimal](28, 8) NULL,
+	[DebitTotalCury] [decimal](28, 8) NULL,
+	[ControlTotalCury] [decimal](28, 8) NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
