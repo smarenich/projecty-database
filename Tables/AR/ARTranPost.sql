@@ -5,45 +5,42 @@ DROP TABLE IF EXISTS [dbo].[ARTranPost];
 CREATE TABLE [dbo].[ARTranPost]
 (
 	[RecordID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-
-	--Classification
-	[DocType] [char](3) NOT NULL,
-	[RefNbr] [nvarchar](15) NOT NULL,
-	[LineNbr] [int] NOT NULL,
-	[AdjNbr] [int] NULL,
-
-	--Source Document
-	[SourceDocType] [char](3) NOT NULL,
-	[SourceRefNbr] [nvarchar](15) NOT NULL,
-
-	--References
 	[RefNoteID] [uniqueidentifier] NOT NULL,
-	[BranchID] [uniqueidentifier] NOT NULL,
-	[CustomerID] [uniqueidentifier] NOT NULL,
-	[ReferenceID] [int] NOT NULL,
+	[Description] [nvarchar](255) NULL,
+
+	--General
+	[Module] [char](2) NOT NULL,
+	[DocType] [char](3) NOT NULL,
+	[RefNumber] [nvarchar](15) NOT NULL,
+	[LineNumber] [int] NOT NULL,
+	[AdjNbr] [int] NULL,
+	[SourceDocType] [char](3) NOT NULL,
+	[SourceRefNumber] [nvarchar](15) NOT NULL,
+
+	--Status
+	[Released] [bit] NULL,
+	[Modified] [bit] NULL,
+	[IsMigratedRecord] [bit] NOT NULL DEFAULT (0),
 
 	--Date
 	[DocDate] [smalldatetime] NOT NULL,
 	[FinPeriodID] [char](6) NOT NULL,
-	[TranPeriodID] [char](6) NOT NULL,
 	[StatementDate] [smalldatetime] NULL,
 
-	--Currency
-	[CurrencyInfoID] [uniqueidentifier] NOT NULL,
 
-	--Document Links
+	--References
+	[BranchID] [uniqueidentifier] NOT NULL,
+	[CustomerID] [uniqueidentifier] NOT NULL,
+	[ReferenceID] [int] NOT NULL,
+	[CurrencyInfoID] [uniqueidentifier] NOT NULL,
 	[BatchNbr] [nvarchar](15) NULL,
 	[VoidAdjNbr] [int] NULL,
-
-	--Accounting
 	[AccountID] [uniqueidentifier] NULL,
 	[SubID] [uniqueidentifier] NULL,
 
 	--Amounts
 	[Amount] [decimal](28, 8) NULL,
 	[AmountCury] [decimal](28, 8) NULL,
-	[PPDAmount] [decimal](28, 8) NULL,
-	[PPDAmountCury] [decimal](28, 8) NULL,
 	[DiscountAmount] [decimal](28, 8) NULL,
 	[DiscountAmountCury] [decimal](28, 8) NULL,
 	[RetainageAmount] [decimal](28, 8) NULL,
@@ -60,10 +57,6 @@ CREATE TABLE [dbo].[ARTranPost]
 	[TranRefNbr] [nvarchar](15) NULL,
 	[TranClass] [char](4) NOT NULL,
 	[BalanceSign] [smallint] NOT NULL,
-	[GLSign] [smallint] NOT NULL,
-
-	--Flags
-	[IsMigratedRecord] [bit] NOT NULL DEFAULT (0),
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

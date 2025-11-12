@@ -10,6 +10,7 @@ CREATE TABLE [dbo].[APRegister]
 	[DocType] [char](3) NOT NULL,
 	[RefNbr] [nvarchar](15) NOT NULL,
 	[Desciption] [nvarchar](512) NULL,
+	[ExternalRef] [nvarchar](80) NULL,
 
 	--Status
 	[Status] [char](1) NOT NULL,
@@ -19,6 +20,7 @@ CREATE TABLE [dbo].[APRegister]
 	--Date
 	[DocDate] [smalldatetime] NOT NULL,
 	[OrigDocDate] [smalldatetime] NULL,
+	[DueDate] [smalldatetime] NULL,
 	[ClosedDate] [smalldatetime] NULL,
 	[FinPeriodID] [char](6) NOT NULL,
 
@@ -26,13 +28,10 @@ CREATE TABLE [dbo].[APRegister]
 	[CurrencyID] [nvarchar](5) NOT NULL,
 	[BaseCurrencyID] [nvarchar](5) NULL,
 	[CurrencyRateID] [uniqueidentifier] NOT NULL,
-  	[TaxCalcMode] [char](1) NOT NULL DEFAULT 'T',
 
 	--Flags
-	[IsPaymentsByLinesAllowed] [bit] NOT NULL DEFAULT (0),
 	[IsMigratedRecord] [bit] NOT NULL DEFAULT (0),
-	[IsExpectedPPVValid] [bit] NOT NULL DEFAULT (0),
-  	[IsRetainageAllowed] [bit] NOT NULL DEFAULT (0),
+  	[IsRetainage] [bit] NOT NULL DEFAULT (0),
 
 	--References
 	[BranchID] [uniqueidentifier] NOT NULL,
@@ -70,11 +69,10 @@ CREATE TABLE [dbo].[APRegister]
   	[ChargeAmount] [decimal](28, 8) NOT NULL DEFAULT (0),
   	[ChargeAmountCury] [decimal](28, 8) NOT NULL DEFAULT (0),
 
-	[RoundDiff] [decimal](28, 8) NOT NULL,
-  	[RoundDiffCury] [decimal](28, 8) NOT NULL,
+	--Tax
+  	[TaxCalcMode] [char](1) NOT NULL DEFAULT 'T',
 	[TaxRoundDiff] [decimal](28, 8) NOT NULL,
   	[TaxRoundDiffCury] [decimal](28, 8) NOT NULL,
-
 	[OrigWitholdingTaxAmt] [decimal](28, 8) NOT NULL,
   	[OrigWitholdingTaxAmtCury] [decimal](28, 8) NOT NULL,
 	[WitholdingTaxBal] [decimal](28, 8) NOT NULL,

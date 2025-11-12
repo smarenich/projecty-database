@@ -27,49 +27,10 @@ CREATE TABLE [dbo].[ARPayment]
 	[CashAccountID] [uniqueidentifier] NULL,
 	[CashSubID] [uniqueidentifier] NULL,
 
-	--Project
-	[ProjectID] [uniqueidentifier] NOT NULL DEFAULT ('00000000-0000-0000-0000-000000000000'),
-	[TaskID] [uniqueidentifier] NULL,
-
 	--Clearing
 	[Cleared] [bit] NULL,
 	[ClearDate] [smalldatetime] NULL,
 	[Settled] [bit] NOT NULL DEFAULT (0),
-	[CATranID] [bigint] NULL,
-
-	--Deposit
-	[DepositAsBatch] [bit] NOT NULL DEFAULT (0),
-	[DepositAfter] [smalldatetime] NULL,
-	[DepositType] [char](3) NULL,
-	[DepositNbr] [nvarchar](15) NULL,
-	[Deposited] [bit] NOT NULL DEFAULT (0),
-
-	--Credit Card
-	[CardPresent] [bit] NOT NULL DEFAULT (0),
-	[IsCCPayment] [bit] NOT NULL DEFAULT (0),
-	[IsCCAuthorized] [bit] NOT NULL DEFAULT (0),
-	[IsCCCaptured] [bit] NOT NULL DEFAULT (0),
-	[IsCCCaptureFailed] [bit] NOT NULL DEFAULT (0),
-	[IsCCRefunded] [bit] NOT NULL DEFAULT (0),
-	[IsCCUserAttention] [bit] NOT NULL DEFAULT (0),
-	[CCTransactionRefund] [bit] NOT NULL DEFAULT (0),
-	[CCActualExternalTransactionID] [int] NULL,
-	[CCReauthDate] [datetime] NULL,
-	[CCReauthTriesLeft] [int] NULL,
-	[SaveCard] [bit] NOT NULL DEFAULT (0),
-
-	--Sync
-	[SyncLock] [bit] NULL,
-	[SyncLockReason] [char](1) NULL,
-
-	--Totals
-	[OrigTaxDiscAmount] [decimal](28, 8) NOT NULL DEFAULT (0),
-	[OrigTaxDiscAmountCury] [decimal](28, 8) NOT NULL DEFAULT (0),
-	[ConsolidateChargeTotal] [decimal](28, 8) NOT NULL DEFAULT (0),
-	[ConsolidateChargeTotalCury] [decimal](28, 8) NOT NULL DEFAULT (0),
-
-	--Counters
-	[ChargeCntr] [int] NOT NULL DEFAULT (0),
 
 	CONSTRAINT [ARPayment_PK] PRIMARY KEY CLUSTERED
 	(

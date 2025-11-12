@@ -19,6 +19,7 @@ CREATE TABLE [dbo].[APTran]
   	[TranDate] [smalldatetime] NOT NULL,
 	[DocDate] [smalldatetime] NULL,
 	[FinPeriodID] [char](6) NOT NULL,
+	[ExternalRef] [nvarchar](100) NULL,
 
 	--Flags
 	[Released] [bit] NOT NULL,

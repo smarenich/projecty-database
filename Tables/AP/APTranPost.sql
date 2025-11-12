@@ -8,7 +8,7 @@ CREATE TABLE [dbo].[APTranPost]
 	[RefNoteID] [uniqueidentifier] NOT NULL,
 	[Description] [nvarchar](255) NULL,
 
-	--References
+	--General
 	[Module] [char](2) NOT NULL,
 	[DocType] [char](3) NOT NULL,
 	[RefNumber] [nvarchar](15) NOT NULL,
@@ -28,12 +28,11 @@ CREATE TABLE [dbo].[APTranPost]
 	[FinPeriodID] [char](6) NOT NULL,
 	[TranPeriodID] [char](6) NOT NULL,
 
-	--Transaction
+	--References
 	[CompanyID] [uniqueidentifier] NOT NULL,
 	[BranchID] [uniqueidentifier] NOT NULL,
 	[LedgerID] [uniqueidentifier] NOT NULL,
 	[AccountID] [uniqueidentifier] NULL,
-	[SubID] [uniqueidentifier] NULL,
 	[BatchNumber] [nvarchar](15) NULL,
 	[CurrencyID] [nvarchar](5) NOT NULL,
 	[BaseCurrencyID] [nvarchar](5) NULL,
@@ -59,7 +58,6 @@ CREATE TABLE [dbo].[APTranPost]
 	[TranRefNumber] [nvarchar](15) NULL,
 	[TranClass] [char](4) NOT NULL,
 	[BalanceSign] [smallint] NOT NULL,
-	[GLSign] [smallint] NOT NULL,
 
 	[Version] [rowversion] NULL,
 	[JSON] [nvarchar](MAX) NULL,

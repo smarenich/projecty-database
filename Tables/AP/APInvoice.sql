@@ -31,16 +31,14 @@ CREATE TABLE [dbo].[APInvoice]
 	[TermsID] [nvarchar](10) NULL,
 	[TaxZoneID] [nvarchar](10) NULL,
 	[IsTaxDocument] [bit] NULL,
-	[ExternalTaxExemptionNumber] [nvarchar](30) NULL,
-
 
 	--Totals
 	[LineTotal] [decimal](28, 8) NOT NULL,
-  [LineTotalCury] [decimal](28, 8) NOT NULL,
+  	[LineTotalCury] [decimal](28, 8) NOT NULL,
 	[TaxTotal] [decimal](28, 8) NOT NULL,
-  [TaxTotalCury] [decimal](28, 8) NOT NULL,
+  	[TaxTotalCury] [decimal](28, 8) NOT NULL,
 	[TaxAmount] [decimal](28, 8) NOT NULL DEFAULT (0),
-  [TaxAmountCury] [decimal](28, 8) NOT NULL DEFAULT (0),
+  	[TaxAmountCury] [decimal](28, 8) NOT NULL DEFAULT (0),
 	[LineDiscountTotal] [decimal](28, 8) NOT NULL DEFAULT (0),
 	[LineDiscountTotalCury] [decimal](28, 8) NOT NULL DEFAULT (0),
 

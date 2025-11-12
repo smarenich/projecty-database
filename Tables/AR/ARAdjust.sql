@@ -6,9 +6,8 @@ CREATE TABLE [dbo].[ARAdjust]
 (
 	[RecordID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 
-	--Classification
-	[AdjNbr] [int] NOT NULL,
-	[AdjBatchNbr] [nvarchar](15) NULL,
+	--General
+	[StatementDate] [smalldatetime] NULL,
 
 	--Adjusting Document (Payment/Credit)
 	[AdjgDocType] [char](3) NOT NULL,
@@ -30,84 +29,43 @@ CREATE TABLE [dbo].[ARAdjust]
 	[AdjdCurrencyInfoID] [uniqueidentifier] NOT NULL,
 	[AdjdOrigCurrencyInfoID] [uniqueidentifier] NOT NULL,
 
-	--Status
+	--Flags
 	[Released] [bit] NOT NULL,
-	[Hold] [bit] NOT NULL DEFAULT (0),
 	[Voided] [bit] NOT NULL,
-	[VoidAdjNbr] [int] NULL,
+	[IsMigratedRecord] [bit] NOT NULL DEFAULT (0),	
 
 	--References
 	[CustomerID] [uniqueidentifier] NOT NULL,
-	[AdjdCustomerID] [uniqueidentifier] NOT NULL,
+	[CashAccountID] [uniqueidentifier] NULL,
+	[PaymentMethodID] [nvarchar](10) NULL,
+
+	[AdjBatchNbr] [nvarchar](15) NULL,
 	[AdjdOrderType] [char](2) NULL,
 	[AdjdOrderNbr] [nvarchar](15) NULL,
 
-	--Accounting (Adjusted Document)
+	--Accounting
 	[AdjdARAccountID] [uniqueidentifier] NOT NULL,
 	[AdjdARSubID] [uniqueidentifier] NOT NULL,
 
-	--Adjusting Amounts (Base Currency)
+	--Adjusting Amounts
 	[AdjustingAmount] [decimal](28, 8) NULL,
-	[AdjustingDiscountAmount] [decimal](28, 8) NULL,
-	[AdjustingPPDAmount] [decimal](28, 8) NULL,
-	[AdjustingWriteOffAmount] [decimal](28, 8) NOT NULL DEFAULT (0),
-
-	--Adjusting Amounts (Transaction Currency)
 	[AdjustingAmountCury] [decimal](28, 8) NULL,
+	[AdjustingDiscountAmount] [decimal](28, 8) NULL,
 	[AdjustingDiscountAmountCury] [decimal](28, 8) NULL,
-	[AdjustingPPDAmountCury] [decimal](28, 8) NULL,
+	[AdjustingWriteOffAmount] [decimal](28, 8) NOT NULL DEFAULT (0),
 	[AdjustingWriteOffAmountCury] [decimal](28, 8) NOT NULL DEFAULT (0),
 
-	--Adjusted Amounts (Document Currency)
+	--Adjusted Amounts
 	[AdjustedAmount] [decimal](28, 8) NULL,
-	[AdjustedOrigAmount] [decimal](28, 8) NULL,
-	[AdjustedDiscountAmount] [decimal](28, 8) NULL,
-	[AdjustedPPDAmount] [decimal](28, 8) NULL,
-	[AdjustedWriteOffAmount] [decimal](28, 8) NOT NULL DEFAULT (0),
-
-	--Adjusted Amounts (Transaction Currency)
 	[AdjustedAmountCury] [decimal](28, 8) NULL,
+	[AdjustedOrigAmount] [decimal](28, 8) NULL,
 	[AdjustedOrigAmountCury] [decimal](28, 8) NULL,
+	[AdjustedDiscountAmount] [decimal](28, 8) NULL,
 	[AdjustedDiscountAmountCury] [decimal](28, 8) NULL,
-	[AdjustedPPDAmountCury] [decimal](28, 8) NULL,
+	[AdjustedWriteOffAmount] [decimal](28, 8) NOT NULL DEFAULT (0),
 	[AdjustedWriteOffAmountCury] [decimal](28, 8) NOT NULL DEFAULT (0),
 
-	--Write-Off
-	[WriteOffReasonCode] [nvarchar](20) NULL,
-
-	--RGOL (Realized Gain/Loss)
 	[RGOLAmount] [decimal](28, 8) NULL,
-
-	--PPD (Prompt Payment Discount)
-	[PendingPPD] [bit] NOT NULL DEFAULT (0),
-	[AdjdHasPPDTaxes] [bit] NOT NULL DEFAULT (0),
-	[PPDVATAdjDocType] [char](3) NULL,
-	[PPDVATAdjRefNbr] [nvarchar](15) NULL,
-
-	--Tax
-	[TaxInvoiceNbr] [nvarchar](15) NULL,
-
-	--Dates
-	[StatementDate] [smalldatetime] NULL,
-
-	--Flags
-	[IsMigratedRecord] [bit] NOT NULL DEFAULT (0),
-	[IsInitialApplication] [bit] NOT NULL DEFAULT (0),
-	[Recalculatable] [bit] NOT NULL DEFAULT (0),
-
-	--Credit Card Payment
-	[IsCCPayment] [bit] NOT NULL DEFAULT (0),
-	[PaymentPendingProcessing] [bit] NOT NULL DEFAULT (0),
-	[PaymentReleased] [bit] NOT NULL DEFAULT (0),
-	[IsCCAuthorized] [bit] NOT NULL DEFAULT (0),
-	[IsCCCaptured] [bit] NOT NULL DEFAULT (0),
-	[PaymentCaptureFailed] [bit] NOT NULL DEFAULT (0),
-
-	--Notes
-	[NoteID] [uniqueidentifier] NOT NULL,
-	[InvoiceID] [uniqueidentifier] NULL,
-	[PaymentID] [uniqueidentifier] NULL,
-	[MemoID] [uniqueidentifier] NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

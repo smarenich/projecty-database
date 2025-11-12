@@ -16,7 +16,6 @@ CREATE TABLE [dbo].[INWarehouse]
 	[BAccountID] [uniqueidentifier] NULL,
 	[ContactID] [uniqueidentifier] NULL,
 	[AddressID] [uniqueidentifier] NULL,
-	[BuildingID] [uniqueidentifier] NULL,
 
 	--Currency
 	[BaseCurrencyID] [nvarchar](5) NOT NULL,
@@ -42,13 +41,11 @@ CREATE TABLE [dbo].[INWarehouse]
 	[OverrideInvtAccSub] [bit] NOT NULL DEFAULT (0),
 
 	--Locations
-	[LocationValid] [char](1) NULL,
 	[ReceiptLocationID] [uniqueidentifier] NULL,
 	[ShipLocationID] [uniqueidentifier] NULL,
 	[ReturnLocationID] [uniqueidentifier] NULL,
 	[DropShipLocationID] [uniqueidentifier] NULL,
 	[NonStockPickingLocationID] [uniqueidentifier] NULL,
-	[UseItemDefaultLocationForPicking] [bit] NOT NULL DEFAULT (0),
 
 	--Replenishment
 	[ReplenishmentClassID] [nvarchar](10) NULL,
@@ -59,12 +56,6 @@ CREATE TABLE [dbo].[INWarehouse]
 
 	--Carrier
 	[CarrierFacility] [nvarchar](50) NULL,
-
-	--Security
-	[GroupMask] [varbinary](32) NOT NULL DEFAULT 0x,
-
-	--Notes
-	[NoteID] [uniqueidentifier] NOT NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

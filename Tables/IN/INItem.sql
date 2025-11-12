@@ -7,6 +7,7 @@ CREATE TABLE [dbo].[INItem]
 	[ItemID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[ItemCD] [nvarchar](30) NOT NULL,
 	[Description] [nvarchar](256) NULL,
+	[Type] [char](1) NOT NULL, --Stock/NonStock/Kit
 
 	--Classification
 	[ItemType] [char](1) NOT NULL,
@@ -14,6 +15,7 @@ CREATE TABLE [dbo].[INItem]
 	[ItemClassID] [uniqueidentifier] NULL,
 	[PostClassID] [nvarchar](10) NULL,
 	[PriceClassID] [nvarchar](10) NULL,
+	[LotSerClassID] [nvarchar](10) NULL,
 
 	--Units
 	[BaseUnit] [nvarchar](6) NOT NULL,
@@ -28,7 +30,6 @@ CREATE TABLE [dbo].[INItem]
 	[RecPrice] [decimal](28, 8) NULL,
 	[MarkupPct] [decimal](28, 8) NULL,
 	[MinGrossProfitPct] [decimal](28, 8) NOT NULL,
-	[PercentOfSalesPrice] [decimal](28, 8) NOT NULL DEFAULT (0),
 
 	--Weight & Volume
 	[WeightItem] [bit] NOT NULL DEFAULT (0),
@@ -39,14 +40,6 @@ CREATE TABLE [dbo].[INItem]
 	[BaseItemVolume] [decimal](28, 8) NOT NULL,
 	[VolumeUOM] [nvarchar](6) NULL,
 
-	--Packaging
-	[PackageOption] [char](1) NOT NULL DEFAULT ('W'),
-	[PackSeparately] [bit] NOT NULL DEFAULT (0),
-
-	--Stock
-	[StkItem] [bit] NOT NULL,
-	[KitItem] [bit] NOT NULL DEFAULT (0),
-	[LotSerClassID] [nvarchar](10) NULL,
 
 	--Valuation & Costing
 	[ValMethod] [char](1) NULL,
@@ -99,21 +92,9 @@ CREATE TABLE [dbo].[INItem]
 	[DfltReceiptLocationID] [uniqueidentifier] NULL,
 	[LastSiteID] [uniqueidentifier] NULL,
 
-	--Management
-	[ProductWorkGroupID] [uniqueidentifier] NULL,
-	[ProductManagerID] [uniqueidentifier] NULL,
-	[PriceWorkGroupID] [uniqueidentifier] NULL,
-	[PriceManagerID] [uniqueidentifier] NULL,
-
 	--Vendor
 	[PreferredVendorID] [uniqueidentifier] NULL,
 	[PreferredVendorLocationID] [uniqueidentifier] NULL,
-
-	--Sub Items
-	[DefaultSubItemID] [uniqueidentifier] NULL,
-	[DefaultSubItemOnEntry] [bit] NOT NULL,
-	[IsSplitted] [bit] NOT NULL DEFAULT (0),
-	[UseParentSubID] [bit] NOT NULL DEFAULT (0),
 
 	--Cycle & ABC
 	[CycleID] [nvarchar](10) NULL,
@@ -141,97 +122,11 @@ CREATE TABLE [dbo].[INItem]
 	[CommodityCodeType] [nvarchar](30) NULL DEFAULT 'HS',
 	[CountryOfOrigin] [nvarchar](2) NULL,
 
-	--Matrix/Template
-	[IsTemplate] [bit] NOT NULL DEFAULT (0),
-	[TemplateItemID] [uniqueidentifier] NULL,
-	[DefaultRowMatrixAttributeID] [nvarchar](10) NULL,
-	[DefaultColumnMatrixAttributeID] [nvarchar](10) NULL,
-	[GenerationRuleCntr] [int] NOT NULL DEFAULT (0),
-	[AttributeDescriptionGroupID] [uniqueidentifier] NULL,
-	[ColumnAttributeValue] [nvarchar](255) NULL,
-	[RowAttributeValue] [nvarchar](255) NULL,
-
-	--E-Commerce
-	[Visibility] [char](1) NULL,
-	[Availability] [char](1) NULL,
-	[NotAvailMode] [char](1) NULL,
-	[AvailabilityAdjustment] [decimal](28, 8) NOT NULL DEFAULT (0),
-	[CustomURL] [nvarchar](100) NULL,
-	[PageTitle] [nvarchar](100) NULL,
-	[MetaDescription] [nvarchar](1024) NULL,
-	[MetaKeywords] [nvarchar](1024) NULL,
-	[SearchKeywords] [nvarchar](1024) NULL,
-	[ShortDescription] [nvarchar](1024) NULL,
-	[ExportToExternal] [bit] NULL DEFAULT (1),
-	[ImageUrl] [varchar](255) NULL,
-
-	--Manufacturing (MFG)
-	[AMBOMID] [nvarchar](15) NULL,
-	[AMPlanningBOMID] [nvarchar](15) NULL,
-	[AMLotSize] [decimal](28, 8) NULL,
-	[AMMaxOrdQty] [decimal](28, 8) NULL,
-	[AMMinOrdQty] [decimal](28, 8) NULL,
-	[AMLowLevel] [int] NULL,
-	[AMMrpItem] [bit] NULL,
-	[AMMFGLeadTime] [int] NULL,
-	[AMGroupWindow] [int] NULL,
-	[AMWIPAcctID] [uniqueidentifier] NULL,
-	[AMWIPSubID] [uniqueidentifier] NULL,
-	[AMWIPVarianceAcctID] [uniqueidentifier] NULL,
-	[AMWIPVarianceSubID] [uniqueidentifier] NULL,
-	[AMConfigurationID] [nvarchar](15) NULL,
-	[AMReplenishmentSourceOverride] [bit] NOT NULL DEFAULT (0),
-	[ReplenishmentSource] [char](1) NOT NULL DEFAULT 'N',
-	[AMSafetyStockOverride] [bit] NOT NULL DEFAULT (0),
-	[AMSafetyStock] [decimal](16, 9) NULL,
-	[AMMinQtyOverride] [bit] NOT NULL DEFAULT (0),
-	[AMMinQty] [decimal](16, 9) NULL,
-	[AMQtyRoundUp] [bit] NOT NULL DEFAULT (0),
-	[AMScrapSiteID] [uniqueidentifier] NULL,
-	[AMScrapLocationID] [uniqueidentifier] NULL,
-	[AMMakeToOrderItem] [bit] NOT NULL DEFAULT (0),
-	[AMDefaultMarkFor] [int] NOT NULL DEFAULT (0),
-	[AMCheckSchdMatlAvailability] [bit] NULL,
-	[AMCTPItem] [bit] NULL,
-	[AMGroupWindowOverride] [bit] NOT NULL DEFAULT (0),
-	[AMSourceSiteID] [uniqueidentifier] NULL,
-	[IsProcessMFG] [bit] NULL,
-
-	--Equipment & Warranty
-	[EQEnabled] [bit] NULL DEFAULT (0),
-	[EquipmentItemClass] [char](2) NULL DEFAULT 'OI',
-	[EquipmentTypeID] [uniqueidentifier] NULL,
-	[ManufacturerID] [uniqueidentifier] NULL,
-	[ManufacturerModelID] [uniqueidentifier] NULL,
-	[ModelType] [char](2) NULL DEFAULT 'EQ',
-	[CpnyWarrantyType] [char](1) NULL DEFAULT 'M',
-	[CpnyWarrantyValue] [int] NULL DEFAULT (0),
-	[VendorWarrantyType] [char](1) NULL DEFAULT 'M',
-	[VendorWarrantyValue] [int] NULL DEFAULT (0),
-
-	--Service Management
-	[SDEnabled] [bit] NULL DEFAULT (0),
-	[ActionType] [char](1) NULL,
-	[BillingRule] [char](4) NULL,
-	[DfltEarningType] [nvarchar](15) NULL,
-	[EstimatedDuration] [int] NULL DEFAULT (0),
-	[IsTravelItem] [bit] NULL DEFAULT (0),
-	[PostToExpenseAccount] [char](1) NOT NULL DEFAULT ('P'),
-
 	--Planning
 	[PlanningMethod] [char](1) NOT NULL DEFAULT 'N',
 
-	--Flags
-	[Commissionable] [bit] NOT NULL,
-	[IsConverted] [bit] NOT NULL DEFAULT (0),
-	[IsSpecialOrderItem] [bit] NOT NULL DEFAULT (0),
-	[T5018Service] [bit] NULL DEFAULT (0),
 
-	--Security
-	[GroupMask] [varbinary](32) NOT NULL DEFAULT 0x,
-
-	--Notes
-	[NoteID] [uniqueidentifier] NOT NULL,
+	--Description
 	[Body] [ntext] NULL,
 
 	--System

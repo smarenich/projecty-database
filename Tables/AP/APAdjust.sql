@@ -6,11 +6,6 @@ CREATE TABLE [dbo].[APAdjust]
 (
 	[RecordID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 
-   --Frags
-	[Released] [bit] NOT NULL,
-	[Voided] [bit] NOT NULL,
-  [IsMigratedRecord] [bit] NOT NULL DEFAULT (0),
-
 	--Adjusting Document (Payment/Credit)
 	[AdjgDocType] [char](3) NOT NULL,
 	[AdjgRefNbr] [nvarchar](15) NOT NULL,
@@ -18,7 +13,6 @@ CREATE TABLE [dbo].[APAdjust]
 	[AdjgBranchID] [uniqueidentifier] NOT NULL,
 	[AdjgFinPeriodID] [char](6) NOT NULL,
 	[AdjgCurrencyRateID] [uniqueidentifier] NOT NULL,
-  [AdjBatchNbr] [nvarchar](15) NULL,
 
 	--Adjusted Document (Invoice/Debit Memo)
 	[AdjdDocType] [char](3) NOT NULL,
@@ -30,10 +24,16 @@ CREATE TABLE [dbo].[APAdjust]
 	[AdjdTranPeriodID] [char](6) NOT NULL,
 	[AdjdCurrencyRateID] [uniqueidentifier] NOT NULL,
 
+	--Frags
+	[Released] [bit] NOT NULL,
+	[Voided] [bit] NOT NULL,
+  	[IsMigratedRecord] [bit] NOT NULL DEFAULT (0),
+
 	--References
 	[VendorID] [uniqueidentifier] NOT NULL,
 	[CashAccountID] [uniqueidentifier] NULL,
 	[PaymentMethodID] [nvarchar](10) NULL,
+	[AdjBatchNbr] [nvarchar](15) NULL,
 
 	--Accounting (Adjusted Document)
 	[AdjdAPAccountID] [uniqueidentifier] NOT NULL,
@@ -41,23 +41,23 @@ CREATE TABLE [dbo].[APAdjust]
 	[AdjdWhTaxAccountID] [uniqueidentifier] NULL,
 	[AdjdWhTaxSubID] [uniqueidentifier] NULL,
 
-	--Adjusting Amounts (Base Currency)
+	--Adjusting Amount
 	[AdjustingAmount] [decimal](28, 8) NULL,
-  [AdjustingAmountCury] [decimal](28, 8) NULL,
+  	[AdjustingAmountCury] [decimal](28, 8) NULL,
 	[AdjustingDiscountAmount] [decimal](28, 8) NULL,
-  [AdjustingDiscountAmountCury] [decimal](28, 8) NULL,
+  	[AdjustingDiscountAmountCury] [decimal](28, 8) NULL,
 	[AdjustingPPDAmount] [decimal](28, 8) NULL,
 	[AdjustingPPDAmountCury] [decimal](28, 8) NULL,
 	[AdjustingWhTaxAmount] [decimal](28, 8) NOT NULL,
 	[AdjustingWhTaxAmountCury] [decimal](28, 8) NOT NULL,
 
-	--Adjusted Amounts (Document Currency)
+	--Adjusted Amounts
 	[AdjustedAmount] [decimal](28, 8) NULL,
-  [AdjustedAmountCury] [decimal](28, 8) NULL,
+  	[AdjustedAmountCury] [decimal](28, 8) NULL,
 	[AdjustedDiscountAmount] [decimal](28, 8) NULL,
-  [AdjustedDiscountAmountCury] [decimal](28, 8) NULL,
+  	[AdjustedDiscountAmountCury] [decimal](28, 8) NULL,
 	[AdjustedPPDAmount] [decimal](28, 8) NULL,
-  [AdjustedPPDAmountCury] [decimal](28, 8) NULL,
+  	[AdjustedPPDAmountCury] [decimal](28, 8) NULL,
 	[AdjustedWhTaxAmount] [decimal](28, 8) NOT NULL,
 	[AdjustedWhTaxAmountCury] [decimal](28, 8) NOT NULL,
 
