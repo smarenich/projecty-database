@@ -121,8 +121,7 @@
     <Build Include="Tables\SM\SMFile.sql" />
     <Build Include="Tables\SM\SMFileRevision.sql" />
     <Build Include="Tables\SM\SMLocale.sql" />
-    <Build Include="Tables\SM\SMPreferencesGeneral.sql" />
-    <Build Include="Tables\SM\SMPreferencesSecurity.sql" />
+    <Build Include="Tables\SM\SMPreferences.sql" />
     <Build Include="Tables\SM\SMRole.sql" />
     <Build Include="Tables\SM\SMSystemEvent.sql" />
     <Build Include="Tables\SM\SMTag.sql" />

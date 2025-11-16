@@ -123,5 +123,3 @@ CREATE TABLE [dbo].[GLTransactionExt](
 	)
 )
 GO
-CREATE NONCLUSTERED INDEX GLTransactionExt_ValueString ON [dbo].[GLTransactionExt] ([RecordID], [FieldName]) INCLUDE ([ValueString])
-GO

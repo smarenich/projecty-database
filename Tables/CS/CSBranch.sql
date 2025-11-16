@@ -4,7 +4,7 @@
 DROP TABLE IF EXISTS [dbo].[CSBranch];
 CREATE TABLE [dbo].[CSBranch]
 (
-	[BranchID] [int] IDENTITY NOT NULL,
+	[BranchID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[BranchCD] [nvarchar](30) NOT NULL,
 	[BAccountID] [int] NOT NULL,
 	[Active] [bit] NOT NULL DEFAULT (1),
@@ -31,20 +31,15 @@ CREATE TABLE [dbo].[CSBranch]
 	[LastModifiedDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 	[JSON] [nvarchar](MAX) NULL,
-	[GroupMask] [varbinary](32) NOT NULL DEFAULT (0x),
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
 	CONSTRAINT [CSBranch_PK] PRIMARY KEY CLUSTERED
 	(
-		[CSBranchID] ASC
+		[BranchID] ASC
 	),
 	UNIQUE NONCLUSTERED
 	(
-		[CSBranchCD] ASC
-	),
-	UNIQUE NONCLUSTERED
-	(
-		[CSCompanyID] ASC
+		[BranchCD] ASC
 	)
 )
 GO
