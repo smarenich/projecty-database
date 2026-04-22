@@ -9,7 +9,7 @@ CREATE TABLE [dbo].[APRegister]
 	--Classification
 	[DocType] [char](3) NOT NULL,
 	[RefNbr] [nvarchar](15) NOT NULL,
-	[Desciption] [nvarchar](512) NULL,
+	[Description] [nvarchar](512) NULL,
 	[ExternalRef] [nvarchar](80) NULL,
 
 	--Status

@@ -9,7 +9,13 @@ CREATE TABLE [dbo].[SICompany]
 	[Type] [char](1) NOT NULL,
 	[Active] [bit] NOT NULL,
 	[Description] [nvarchar](60) NULL,
+
 	[CurrencyID] [nvarchar](5) NULL,
+	[LegalName] [nvarchar](60) NULL,
+	[TaxRegistrationID] [nvarchar](60) NULL,
+
+	[DefaultAddressID] [uniqueidentifier] NULL,
+	[DefaultContactID] [uniqueidentifier] NULL,
 
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,

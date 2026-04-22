@@ -73,6 +73,7 @@
     <Folder Include="Tables\SM" />
     <Folder Include="Tables\SY" />
     <Folder Include="Views" />
+    <Folder Include="_Guidelines" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".vscode\tasks.json" />
@@ -100,9 +101,9 @@
     <Build Include="Tables\CS\CSBranch.sql" />
     <Build Include="Tables\CS\CSTerms.sql" />
     <Build Include="Tables\GL\GLAccount.sql" />
-    <Build Include="Tables\GL\GLAccountJobClass.sql" />
     <Build Include="Tables\GL\GLAccountReportingClass.sql" />
     <Build Include="Tables\GL\GLBatch.sql" />
+    <Build Include="Tables\GL\GLChartOfAccounts.sql" />
     <Build Include="Tables\GL\GLFinPeriod.sql" />
     <Build Include="Tables\GL\GLLedger.sql" />
     <Build Include="Tables\GL\GLPreferences.sql" />
@@ -119,7 +120,6 @@
     <Build Include="Tables\SI\SIState.sql" />
     <Build Include="Tables\SM\SMAllowedFileType.sql" />
     <Build Include="Tables\SM\SMFile.sql" />
-    <Build Include="Tables\SM\SMFileRevision.sql" />
     <Build Include="Tables\SM\SMLocale.sql" />
     <Build Include="Tables\SM\SMPreferences.sql" />
     <Build Include="Tables\SM\SMRole.sql" />
@@ -133,9 +133,11 @@
     <Build Include="Tables\SY\SYDataType.sql" />
     <Build Include="Tables\SY\SYRecordAttachment.sql" />
     <Build Include="Tables\SY\SYRecordComment.sql" />
-    <Build Include="Tables\SY\SYRecordInfo.sql" />
+    <Build Include="Tables\SY\SYRecordMetadata.sql" />
     <Build Include="Tables\SY\SYRecordReference.sql" />
+    <Build Include="Tables\SY\SYRecordSearchIndex.sql" />
     <Build Include="Tables\SY\SYRecordTag.sql" />
+    <Build Include="Tables\SY\SYRecordType.sql" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />

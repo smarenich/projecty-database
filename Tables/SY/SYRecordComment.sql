@@ -2,8 +2,10 @@ DROP TABLE IF EXISTS [dbo].[SYRecordComment];
 CREATE TABLE [dbo].[SYRecordComment]
 (
 	[RecordID] [uniqueidentifier] NOT NULL,
+	[Type] [char](1) NOT NULL, --U=User or S=System
 
 	[Comment] [nvarchar](max) NOT NULL,
+	[RefActivityID] [uniqueidentifier] NULL, -- Lint to external event caused caused the comment
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

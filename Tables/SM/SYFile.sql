@@ -1,16 +1,13 @@
 ----------------------------------------------------------------
--- SMTag
+-- GLChartOfAccounts
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[SMTag];
-CREATE TABLE [dbo].[SMTag]
+DROP TABLE IF EXISTS [dbo].[SMFile];
+CREATE TABLE [dbo].[SMFile]
 (
-	[TagID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[TagCD] [nvarchar](10) NOT NULL,
+	[FileID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),	
+	[Name] [nvarchar](255) NOT NULL,
 
-	[Type] [char](1) NULL, --System, User, ISV
-	[Scope] [char](64) NULL, --GL/AP/SO
-	[Color] [char](6) NULL,
-	[Description] [nvarchar](256) NULL,
+	[LastRevisionID] [int] NOT NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
@@ -23,13 +20,9 @@ CREATE TABLE [dbo].[SMTag]
 	[JSON] [nvarchar](MAX) NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-	CONSTRAINT [SMTag_PK] PRIMARY KEY CLUSTERED
-	(
-		[TagID] ASC
-	),
-	UNIQUE NONCLUSTERED
-	(
-		[TagCD] ASC
-	)
+  CONSTRAINT [SMFile_PK] PRIMARY KEY CLUSTERED 
+  (
+    [FileID] ASC
+  )
 )
 GO

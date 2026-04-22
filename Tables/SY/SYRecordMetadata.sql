@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
--- SYRecordMetadata
+-- SYRecordInfo
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[SYRecordMetadata];
-CREATE TABLE [dbo].[SYRecordMetadata]
+DROP TABLE IF EXISTS [dbo].[SYRecordInfo];
+CREATE TABLE [dbo].[SYRecordInfo]
 (
 	[RecordID] [uniqueidentifier] NOT NULL,
 
@@ -30,7 +30,7 @@ CREATE TABLE [dbo].[SYRecordMetadata]
 	[Version] [rowversion] NULL,
 	[JSON] [nvarchar](MAX) NULL,
 
-	PRIMARY KEY CLUSTERED
+	CONSTRAINT [SYRecordInfo_PK] PRIMARY KEY CLUSTERED
 	(
 		[RecordID] ASC
 	)

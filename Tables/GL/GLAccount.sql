@@ -4,25 +4,25 @@
 DROP TABLE IF EXISTS [dbo].[GLAccount];
 CREATE TABLE [dbo].[GLAccount](
 	[AccountID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[AccountCD] [nvarchar](30) NOT NULL,
-	[Type] [char](1) NOT NULL,
-	[Active] [bit] NOT NULL,
+	[AccountCD] [nvarchar](15) NOT NULL,
+	[Type] [char](1) NOT NULL, --Income, Expense, Asset, Liability
+	[OffBalance] [bit] NOT NULL, 
 	[Description] [nvarchar](60) NULL,
 
-	[DirectPost] [bit] NOT NULL,
-	[CurrencyID] [nvarchar](5) NULL,
-	[AccountClassID] [uniqueidentifier] NULL,
-	[AccountGroupID] [uniqueidentifier] NULL,
+	[DirectPost] [bit] /*JSON*/ NOT NULL, 
+	[ControlAccountModule] [CHAR](2) /*JSON*/ NULL,		
+	[CurrencyID] [nvarchar](5) /*JSON*/ NULL,
+	[CuryRateTypeID] [uniqueidentifier] /*JSON*/ NULL,
 
-	[CreatedByUserID] [uniqueidentifier] NOT NULL,
-	[CreatedFrom] [char](8) NOT NULL,
-	[CreatedAtDateTime] [datetime] NOT NULL,
-	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
-	[UpdatedFrom] [char](8) NOT NULL,
-	[UpdatedAtDateTime] [datetime] NOT NULL,
+	[CreatedByUserID] [uniqueidentifier] /*JSON*/ NOT NULL,
+	[CreatedFrom] [char](8) /*JSON*/ NOT NULL,
+	[CreatedAtDateTime] [datetime] /*JSON*/ NOT NULL,
+	[UpdatedByUserID] [uniqueidentifier] /*JSON*/ NOT NULL,
+	[UpdatedFrom] [char](8) /*JSON*/ NOT NULL,
+	[UpdatedAtDateTime] [datetime] /*JSON*/ NOT NULL,
 	[Version] [rowversion] NULL,
-	[JSON] [nvarchar](MAX) NULL,
 	[Deleted] [bit] NOT NULL,
+	[JSON] [nvarchar](MAX) NULL,
 
 	PRIMARY KEY CLUSTERED
 	(

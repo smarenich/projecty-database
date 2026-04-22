@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
--- SMPreferencesGeneral
+-- SMPreferences
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[SMPreferencesGeneral];
-CREATE TABLE [dbo].[SMPreferencesGeneral]
+DROP TABLE IF EXISTS [dbo].[SMPreferences];
+CREATE TABLE [dbo].[SMPreferences]
 (
 	[FieldID] [uniqueidentifier] NOT NULL,
 	[FieldName] [varchar](30) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[SMPreferencesGeneral]
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 
-	CONSTRAINT [GLPreferences_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [SMPreferences_PK] PRIMARY KEY CLUSTERED
 	(
 		[FieldID] ASC
 	),
@@ -31,7 +31,7 @@ CREATE TABLE [dbo].[SMPreferencesGeneral]
 		[FieldName] ASC
 	)
 )
---INSERT INTO [dbo].[SMPreferencesGeneral]
+--INSERT INTO [dbo].[SMPreferences]
 --([FieldID], [FieldName], [FielType], [ValueNumeric], [ValueDate], [ValueString], [ValueText], [CreatedByUserID], [CreatedFrom], [CreatedAtDateTime], [UpdatedByUserID], [UpdatedFrom], [UpdatedAtDateTime])
 --SELECT NEWID(), 'MaxUploadSize','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
 --SELECT NEWID(), 'TimeZone','varchar(32)', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()

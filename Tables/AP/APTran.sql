@@ -42,8 +42,8 @@ CREATE TABLE [dbo].[APTran]
 	[ItemID] [uniqueidentifier] NULL,
 	[SiteID] [uniqueidentifier] NULL,
 	[UOM] [nvarchar](6) NULL,
-	[Quanity] [decimal](25, 6) NULL,
-	[QuanityBase] [decimal](25, 6) NULL,
+	[Quantity] [decimal](25, 6) NULL,
+	[QuantityBase] [decimal](25, 6) NULL,
 
 	--Amounts
 	[ExpenseAmount] [decimal](28, 8) NULL,
