@@ -5,11 +5,11 @@ DROP TABLE IF EXISTS [dbo].[SYRecordType];
 CREATE TABLE [dbo].[SYRecordType]
 (
 	[RecordTypeID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[RecordType] [nvarchar](127) NOT NULL,
+	[EntityType] [nvarchar](255) NOT NULL,
 
   --System Info
-  [KeyFields] [nvarchar](255) NOT NULL,
-  [PrimaryModel] [nvarchar](255) NULL,
+  [KeyFields] [varchar](255) NOT NULL,
+  [PrimaryModelType] [varchar](255) NULL,
 
   --Search
   [Module] [char](2) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE [dbo].[SYRecordType]
 	),
 	UNIQUE NONCLUSTERED
 	(
-		[RecordType] ASC
+		[EntityType] ASC
 	)
 )
 GO

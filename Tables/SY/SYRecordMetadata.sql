@@ -7,10 +7,8 @@ CREATE TABLE [dbo].[SYRecordInfo]
 	[RecordID] [uniqueidentifier] NOT NULL,
 
 	--Technical Info
-	[RecordType] [char](1) NOT NULL, --Parent/Detail
-	[EntityType] [varchar](255) NULL,
-	[BusinessObjectType] [varchar](255) NULL,
-	--[ExternalKey] [nvarchar](255) NULL, --TODISCUSS Key for Integrations
+	[RecordTypeID] [uniqueidentifier] NOT NULL,
+	[ExternalKey] [nvarchar](255) NULL, --TODISCUSS Key for Integrations
 
 	--Public Info
 	[RecordDisplay] [nvarchar](255) NULL, -- Combined Key
@@ -30,7 +28,7 @@ CREATE TABLE [dbo].[SYRecordInfo]
 	[Version] [rowversion] NULL,
 	[JSON] [nvarchar](MAX) NULL,
 
-	CONSTRAINT [SYRecordInfo_PK] PRIMARY KEY CLUSTERED
+	PRIMARY KEY CLUSTERED
 	(
 		[RecordID] ASC
 	)
