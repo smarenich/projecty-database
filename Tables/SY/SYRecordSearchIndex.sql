@@ -12,13 +12,17 @@ CREATE TABLE [dbo].[SYRecordSearchIndex]
   [Category] [int] NOT NULL,
 	[Content] [nvarchar] (MAX) NOT NULL,
 
+  --Display
+  [Title] [NVARCHAR](255) NULL,
+  [Description] [NVARCHAR](511) NULL,                 
+
   --FiltrationMetadata
   [ModuleCode] [char](2) NULL,
   [Status] [NVARCHAR](20) NULL,     
   [Date] [datetime] NULL,
-  [Amount]              DECIMAL(19,4)    NULL,      -- сумма, если применимо
-  [CurrencyID]        CHAR(5)          NULL,
-  [OwnerID]             UNIQUEIDENTIFIER NULL,      -- кто владелец/ответственный
+  [Amount] [decimal](21,4) NULL,
+  [CurrencyID] [char](5) NULL,
+  [OwnerID] [uniqueidentifier] NULL,
 
 	PRIMARY KEY CLUSTERED
 	(
@@ -32,11 +36,12 @@ IF EXISTS(SELECT * FROM sys.fulltext_catalogs)
 	CREATE FULLTEXT INDEX ON [SYRecordSearchIndex] ([Content]) KEY INDEX [IX_SearchIndex]  ON [ft]
 GO
 
+DROP TABLE IF EXISTS [dbo].[IX_SearchIndex_Date];
 CREATE INDEX IX_SearchIndex_Date 
-    ON SearchIndex (CompanyID, DocumentDate DESC)
-    INCLUDE (EntityTypeID, Title);
+    ON SYRecordSearchIndex (Date DESC)
+    INCLUDE (RecordTypeID, Title);
 
--- Для навигации по владельцу (My Documents)
+DROP TABLE IF EXISTS [dbo].[IX_SearchIndex_Owner];
 CREATE INDEX IX_SearchIndex_Owner 
-    ON SearchIndex (CompanyID, OwnerID, IsActive)
+    ON SYRecordSearchIndex (OwnerID)
     WHERE OwnerID IS NOT NULL;
