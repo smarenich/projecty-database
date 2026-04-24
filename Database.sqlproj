@@ -104,6 +104,7 @@
     <Build Include="Tables\GL\GLAccountReportingClass.sql" />
     <Build Include="Tables\GL\GLBatch.sql" />
     <Build Include="Tables\GL\GLChartOfAccounts.sql" />
+    <Build Include="Tables\GL\GLFinCalendar.sql" />
     <Build Include="Tables\GL\GLFinPeriod.sql" />
     <Build Include="Tables\GL\GLLedger.sql" />
     <Build Include="Tables\GL\GLPreferences.sql" />
@@ -117,6 +118,7 @@
     <Build Include="Tables\SI\SICountry.sql" />
     <Build Include="Tables\SI\SIDate.sql" />
     <Build Include="Tables\SI\SINumbering.sql" />
+    <Build Include="Tables\SI\SIParty.sql" />
     <Build Include="Tables\SI\SIState.sql" />
     <Build Include="Tables\SM\SMAllowedFileType.sql" />
     <Build Include="Tables\SM\SMFile.sql" />

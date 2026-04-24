@@ -5,10 +5,14 @@ DROP TABLE IF EXISTS [dbo].[SMTag];
 CREATE TABLE [dbo].[SMTag]
 (
 	[TagID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[TagCD] [nvarchar](10) NOT NULL,
+	[TagCD] [nvarchar](15) NOT NULL,
 
-	[Type] [char](1) NULL, --System, User, ISV
-	[Scope] [char](64) NULL, --GL/AP/SO
+	[Type] [char](64) NULL, --Group of entities aby applicable scenarios 
+		--Examples: Account, Warehouse, Cases, All Documents
+		--TOREVIEW Include in key?
+		--TOREVIEW Can be multiple types? Check Dualentry!
+	
+
 	[Color] [char](6) NULL,
 	[Description] [nvarchar](256) NULL,
 

@@ -10,6 +10,8 @@ CREATE TABLE [dbo].[GLBatch]
 	[Module] [char](2) NOT NULL, --Module
 	[RefNumber] [nvarchar](15) NOT NULL, -- Autonumbering
   
+
+  
 	[BatchType] [varchar](3) NOT NULL,
   [Description] [nvarchar](512) NULL,
 

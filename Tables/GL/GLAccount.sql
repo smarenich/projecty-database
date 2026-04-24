@@ -8,9 +8,7 @@ CREATE TABLE [dbo].[GLAccount](
 	[Type] [char](1) NOT NULL, --Income, Expense, Asset, Liability
 	[OffBalance] [bit] NOT NULL, 
 	[Description] [nvarchar](60) NULL,
-
-	[DirectPost] [bit] /*JSON*/ NOT NULL, 
-	[ControlAccountModule] [CHAR](2) /*JSON*/ NULL,		
+	
 	[CurrencyID] [nvarchar](5) /*JSON*/ NULL,
 	[CuryRateTypeID] [uniqueidentifier] /*JSON*/ NULL,
 

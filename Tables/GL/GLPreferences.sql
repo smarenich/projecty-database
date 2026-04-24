@@ -2,7 +2,7 @@
 -- GLPreferences
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[GLPreferences];
-CREATE TABLE [dbo].[GLPreferences]
+CREATE TABLE [dbo].[GLPreferences] --TODO remove
 (
 	[FieldID] [uniqueidentifier] NOT NULL,
 	[FieldName] [varchar](30) NOT NULL,

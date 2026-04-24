@@ -1,29 +1,22 @@
 ----------------------------------------------------------------
--- SICompany
+-- SIParty
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[SICompany];
-CREATE TABLE [dbo].[SICompany]
+DROP TABLE IF EXISTS [dbo].[SIParty];
+CREATE TABLE [dbo].[SIParty] --TODISCUSS if Naming is right 
 (
 	[CompanyID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[CompanyCD] [nvarchar](30) NOT NULL,
-	[Type] [char](1) NOT NULL, --C=Company, B=Branch
+	[Type] [char](1) NOT NULL,
 	[Active] [bit] NOT NULL,
 	[Description] [nvarchar](60) NULL,
 
-	[ParentCompanyID] [uniqueidentifier] NULL, 
-	[BaseCurrencyID] [nvarchar](5) NULL,  --TODISCUSS Where to take base currency from?
-  	[AccessRole] [uniqueidentifier] NULL,
-	
+	[CurrencyID] [nvarchar](5) NULL,
 	[LegalName] [nvarchar](60) NULL,
 	[TaxRegistrationID] [nvarchar](60) NULL,
 
-    [ChartOfAccountsID] [uniqueidentifier] NOT NULL,
-	[LedgerID] [int] NULL, -- TODO Add a ledger dictionary
+	[DefaultAddressID] [uniqueidentifier] NULL,
+	[DefaultContactID] [uniqueidentifier] NULL,
 
-  	[DefaultAddressID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Address and Back?
-	[DefaultContactID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Contact and Back?
-
-  
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
