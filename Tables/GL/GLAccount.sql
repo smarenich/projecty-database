@@ -11,6 +11,8 @@ CREATE TABLE [dbo].[GLAccount](
 	
 	[CurrencyID] [nvarchar](5) /*JSON*/ NULL,
 	[CuryRateTypeID] [uniqueidentifier] /*JSON*/ NULL,
+	
+	--TAGS
 
 	[CreatedByUserID] [uniqueidentifier] /*JSON*/ NOT NULL,
 	[CreatedFrom] [char](8) /*JSON*/ NOT NULL,

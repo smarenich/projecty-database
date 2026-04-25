@@ -13,6 +13,7 @@ CREATE TABLE [dbo].[GLChartOfAccounts](
 	[TrialBalanceSign] [char](1) /*JSON*/ NOT NULL,
 	[BaseCurrencyID] [nvarchar](5) /*JSON*/ NULL, --TODISCUSS Where should base currency be? COA or Company?
   
+  
 	[CreatedByUserID] [uniqueidentifier] /*JSON*/ NOT NULL,
 	[CreatedFrom] [char](8) /*JSON*/ NOT NULL,
 	[CreatedAtDateTime] [datetime] /*JSON*/ NOT NULL,

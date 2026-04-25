@@ -1,15 +1,14 @@
 ----------------------------------------------------------------
--- GLFinPeriod
+-- GLCompanyPeriod
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[GLFinPeriod];
-CREATE TABLE [dbo].[GLFinPeriod]
+DROP TABLE IF EXISTS [dbo].[GLCompanyPeriod];
+CREATE TABLE [dbo].[GLCompanyPeriod]
 (
 	[FinPeriodID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[FinPeriodCD] [nvarchar](6) NOT NULL,
 	[Description] [nvarchar](60) NULL,
 
 	[CompanyID] [uniqueidentifier] NOT NULL,
-	[FinCalendarID] [uniqueidentifier] NOT NULL, --TODO Create.
 	[Status] [char](1) NOT NULL,
 
 	[StartDate] [smalldatetime] NOT NULL,
@@ -17,12 +16,11 @@ CREATE TABLE [dbo].[GLFinPeriod]
 	[FinYear] [char](4) NOT NULL,
 	[PeriodNumber] [char](2) NOT NULL,
 
-	[APClosed] [bit] NOT NULL DEFAULT (0),
-	[ARClosed] [bit] NOT NULL DEFAULT (0),
-	[INClosed] [bit] NOT NULL DEFAULT (0),
-	[CAClosed] [bit] NOT NULL DEFAULT (0),
-	[FAClosed] [bit] NOT NULL DEFAULT (0),
-	[PRClosed] [bit] NOT NULL DEFAULT (0),
+	[APStatus] [char](1) NOT NULL DEFAULT (0),
+	[ARStatus] [char](1) NOT NULL DEFAULT (0),
+	[INStatus] [char](1) NOT NULL DEFAULT (0),
+	[CAStatus] [char](1) NOT NULL DEFAULT (0),
+	--[FAStatus] [char](1) NOT NULL DEFAULT (0),
 
 
 	--System
@@ -36,7 +34,7 @@ CREATE TABLE [dbo].[GLFinPeriod]
 	[JSON] [nvarchar](MAX) NULL,
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
-	CONSTRAINT [GLFinPeriod_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [GLCompanyPeriod_PK] PRIMARY KEY CLUSTERED
 	(
 		[FinPeriodID] ASC
 	),

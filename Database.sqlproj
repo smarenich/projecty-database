@@ -104,8 +104,8 @@
     <Build Include="Tables\GL\GLAccountReportingClass.sql" />
     <Build Include="Tables\GL\GLBatch.sql" />
     <Build Include="Tables\GL\GLChartOfAccounts.sql" />
-    <Build Include="Tables\GL\GLFinCalendar.sql" />
-    <Build Include="Tables\GL\GLFinPeriod.sql" />
+    <Build Include="Tables\GL\GLCompanyCalendar.sql" />
+    <Build Include="Tables\GL\GLCompanyPeriod.sql" />
     <Build Include="Tables\GL\GLLedger.sql" />
     <Build Include="Tables\GL\GLPreferences.sql" />
     <Build Include="Tables\GL\GLTransaction.sql" />

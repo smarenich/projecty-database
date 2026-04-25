@@ -24,6 +24,8 @@ CREATE TABLE [dbo].[GLBatch]
 	--Settings
 	[AutoReverse] [bit] NULL,
 
+	[AdjustmentTran] [bit] NULL,
+
 	--Date
   [TranDate] [smalldatetime] NOT NULL,
 	[PostDate] [smalldatetime] NOT NULL,
