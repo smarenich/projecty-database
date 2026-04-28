@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[GLAccount](
 	
 	-- [DirectPost] [bit] /*JSON*/ NOT NULL, 
 	[ControlAccountModule] [bit] /*JSON*/ NOT NULL, --TOREVIEW Where to store in COA or Account?
-	[AllowManualEntry] [uniqueidentifier] /*JSON*/ NOT NULL, --TOREVIEW Where to store?
+	[AllowManualEntry] [bit] /*JSON*/ NOT NULL, --TOREVIEW Where to store?
 
 	--TAGS
 
@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[GLAccount](
 	[UpdatedFrom] [char](8) /*JSON*/ NOT NULL,
 	[UpdatedAtDateTime] [datetime] /*JSON*/ NOT NULL,
 	[Version] [rowversion] NULL,
-	[Deleted] [bit] NOT NULL,
+	[Deleted] [bit] NOT NULL DEFAULT (0),
 	[JSON] [nvarchar](MAX) NULL,
 
 	PRIMARY KEY CLUSTERED

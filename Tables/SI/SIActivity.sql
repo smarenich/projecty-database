@@ -12,7 +12,7 @@ CREATE TABLE [dbo].[SIActivity]
 	[RefDocumentID] [uniqueidentifier] NULL, --Activity may refer to the other document, ex: email, task
 
 	[Subject] [nvarchar](998) NULL,
-	[Body] [ntext] NULL,
+	[Body] [nvarchar](MAX) NULL,
 
 	[Priority] [char](1) NULL, --H=High, M=Medium, L=Low
 	[Status] [char](1) NULL, --N=New, P=In Progress, C=Completed, X=Cancelled
@@ -61,19 +61,19 @@ CREATE NONCLUSTERED INDEX [SIActivity_CompanyID] ON [dbo].[SIActivity]
 	[ActivityID] ASC
 )
 GO
-CREATE NONCLUSTERED INDEX [SIActivity_JobID] ON [SIActivity] 
+CREATE NONCLUSTERED INDEX [SIActivity_JobID] ON [dbo].[SIActivity]
 (
   [JobID] ASC,
   [ActivityID] ASC
 )
 GO
-CREATE NONCLUSTERED INDEX [SIActivity_EmployeeID] ON [SIActivity] 
+CREATE NONCLUSTERED INDEX [SIActivity_EmployeeID] ON [dbo].[SIActivity]
 (
   [EmployeeID] ASC,
   [ActivityID] ASC
 )
 GO
-CREATE NONCLUSTERED INDEX [SIActivity_ContactID] ON [SIActivity] 
+CREATE NONCLUSTERED INDEX [SIActivity_ContactID] ON [dbo].[SIActivity]
 (
   [ContactID] ASC,
   [ActivityID] ASC

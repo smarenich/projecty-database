@@ -20,6 +20,6 @@ CREATE TABLE [dbo].[GLCompanyAccount](
 	(
 		[CompanyID] ASC,
 		[AccountID] ASC
-	),
+	)
 )
 GO

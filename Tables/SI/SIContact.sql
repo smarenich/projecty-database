@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[SIContact]
 	[IsActive] [bit] NOT NULL DEFAULT (1),
 	[Status] [char](1) NULL,
 	[ContactType] [char](2) NULL,
-	[AddressID] [int] NULL,
+	[AddressID] [uniqueidentifier] NULL,
 	[ExtRefNbr] [nvarchar](100) NULL,
 
 	--Details

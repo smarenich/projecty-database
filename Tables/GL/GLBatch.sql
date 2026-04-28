@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[GLBatch]
 	--Status
 	[Status] [char](1) NOT NULL,
 	[Draft] [bit] NOT NULL DEFAULT (0),
-	[Released] [bit] NULL DEFAULT (0),
+	[Released] [bit] NOT NULL DEFAULT (0),
 	[Voided] [bit] NOT NULL DEFAULT (0),
 
 	--Settings
@@ -92,7 +92,7 @@ ALTER TABLE [dbo].[GLBatch] ADD CONSTRAINT [FK_GLBatch_Ledger]
 GO
 
 ----------------------------------------------------------------
--- GLTransactionExt
+-- GLBatchExt
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS [dbo].[GLBatchExt];
 CREATE TABLE [dbo].[GLBatchExt]
@@ -110,5 +110,5 @@ CREATE TABLE [dbo].[GLBatchExt]
 	)
 )
 GO
-CREATE NONCLUSTERED INDEX GLBatchExt_ValueString ON [dbo].[GLTransactionExt] ([RecordID], [FieldName]) INCLUDE ([ValueString])
+CREATE NONCLUSTERED INDEX GLBatchExt_ValueString ON [dbo].[GLBatchExt] ([RecordID], [FieldName]) INCLUDE ([ValueString])
 GO

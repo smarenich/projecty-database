@@ -46,5 +46,5 @@ CREATE TABLE [dbo].[GLCompanyPeriod]
 	)
 )
 GO
-CREATE NONCLUSTERED INDEX [GLCompanyCalendar_Date_Index] ON [dbo].[APAdjust] ([CompanyID], [StartDate], [EndDate])
+CREATE NONCLUSTERED INDEX [GLCompanyPeriod_Date_Index] ON [dbo].[GLCompanyPeriod] ([CompanyID], [StartDate], [EndDate])
 GO

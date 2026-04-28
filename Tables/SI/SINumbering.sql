@@ -41,7 +41,7 @@ CREATE TABLE [dbo].[NumberingSequence]
 	[NumberingSequenceID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[SortOrder] [smallint] NULL,
   
-	[BranchID] [int] NULL,
+	[BranchID] [uniqueidentifier] NULL,
 	[EffectiveDate] [smalldatetime] NULL,
 
 	[StartNbr] [nvarchar](15) NOT NULL,

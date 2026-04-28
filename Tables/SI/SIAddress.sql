@@ -34,7 +34,7 @@ CREATE TABLE [dbo].[SIAddress]
 	(
 		[AddressClass] ASC,
 		[AddressID] ASC
-	),
+	)
 )
 GO
 

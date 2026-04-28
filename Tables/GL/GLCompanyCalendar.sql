@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS [dbo].[GLCompanyCalendar];
 CREATE TABLE [dbo].[GLCompanyCalendar]
 (
 	[FinancialCalendarID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
@@ -20,10 +21,11 @@ CREATE TABLE [dbo].[GLCompanyCalendar]
 	[Deleted] [bit] NOT NULL DEFAULT (0),
 
   
-	CONSTRAINT [GGLCompanyCalendar_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [GLCompanyCalendar_PK] PRIMARY KEY CLUSTERED
 	(
     	[FinancialCalendarID] ASC
-	),
+	)
 )
-CREATE NONCLUSTERED INDEX [GLCompanyCalendar_CompanyID_Index] ON [dbo].[APAdjust] ([CompanyID], [FinancialCalendarID])
+GO
+CREATE NONCLUSTERED INDEX [GLCompanyCalendar_CompanyID_Index] ON [dbo].[GLCompanyCalendar] ([CompanyID], [FinancialCalendarID])
 GO

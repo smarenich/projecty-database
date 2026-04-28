@@ -32,7 +32,7 @@ CREATE TABLE [dbo].[SICompany]
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 	[JSON] [nvarchar](MAX) NULL,
-	[Deleted] [bit] NOT NULL,
+	[Deleted] [bit] NOT NULL DEFAULT (0),
 
 	PRIMARY KEY CLUSTERED
 	(
@@ -41,25 +41,6 @@ CREATE TABLE [dbo].[SICompany]
 	UNIQUE NONCLUSTERED
 	(
 		[CompanyCD] ASC
-	)
-)
-GO
-
-----------------------------------------------------------------
--- SIPartyExt
-----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[SIPartyExt];
-CREATE TABLE [dbo].[SIPartyExt](
-	[RecordID] [uniqueidentifier] NOT NULL,
-	[FieldName] [varchar](30) NOT NULL,
-	[ValueNumeric] [decimal](28, 8) NULL,
-	[ValueDate] [datetime] NULL,
-	[ValueString] [nvarchar](256) NULL,
-	[ValueText] [nvarchar](max) NULL,
-	PRIMARY KEY CLUSTERED
-	(
-		[RecordID] ASC,
-		[FieldName] ASC
 	)
 )
 GO

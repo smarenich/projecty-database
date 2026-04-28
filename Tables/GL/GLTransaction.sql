@@ -31,10 +31,10 @@ CREATE TABLE [dbo].[GLTransaction](
 
 	--Amounts
 	[DrCr] [char](1) NOT NULL,
-	[BaseAmt] [decimal] (28, 8),
+	[BaseAmt] [decimal](28, 8),
 	[CurrencyAmt] [decimal](28, 8),
-	[ConsoAmt] [decimal] (28, 8),
-	[Quantity] [decimal] (28, 8),
+	[ConsoAmt] [decimal](28, 8),
+	[Quantity] [decimal](28, 8),
 
 	--References
 	[CompanyID] [uniqueidentifier]  NULL,

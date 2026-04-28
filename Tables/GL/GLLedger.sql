@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[GLLedger](
 	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
 	[UpdatedFrom] [char](8) NOT NULL,
 	[UpdatedAtDateTime] [datetime] NOT NULL,
-	[Deleted] [bit] NOT NULL,
+	[Deleted] [bit] NOT NULL DEFAULT (0),
 	[Version] [rowversion] NULL,
 	[JSON] [nvarchar](MAX) NULL,
 

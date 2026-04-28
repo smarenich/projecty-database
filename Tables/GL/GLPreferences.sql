@@ -24,11 +24,11 @@ CREATE TABLE [dbo].[GLPreferences] --TODO remove
 
 	CONSTRAINT [GLPreferences_PK] PRIMARY KEY CLUSTERED
 	(
-		[FieldID] ASC
+		[PreferenceID] ASC
 	),
 	UNIQUE NONCLUSTERED
 	(
-		[FieldName] ASC
+		[Name] ASC
 	)
 )
 GO
