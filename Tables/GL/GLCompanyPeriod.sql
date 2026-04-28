@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS [dbo].[GLCompanyPeriod];
 CREATE TABLE [dbo].[GLCompanyPeriod]
 (
 	[FinPeriodID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[FinPeriodCD] [nvarchar](6) NOT NULL,
+	[FinPeriodCD] [char](6) NOT NULL,
 
 	[CompanyID] [uniqueidentifier] NOT NULL, --Foreign Key to Company
 	[FinancialCalendarID] [uniqueidentifier] NOT NULL, --Foreign Key to Company

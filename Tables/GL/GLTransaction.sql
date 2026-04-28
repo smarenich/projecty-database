@@ -10,8 +10,8 @@ CREATE TABLE [dbo].[GLTransaction](
 	[RefNumber] [nvarchar](15) NOT NULL,
 	[LineNumber] [int] NOT NULL,
 	
-	[TranType] [varchar](3) NOT NULL,
-	[Description] [nvarchar](255) NULL,
+	[TranType] [char](3) NOT NULL,
+	[Description] [nvarchar](256) NULL,
 
 	--Status
 	[Released] [bit] NOT NULL DEFAULT (0),
@@ -31,10 +31,10 @@ CREATE TABLE [dbo].[GLTransaction](
 
 	--Amounts
 	[DrCr] [char](1) NOT NULL,
-	[BaseAmt] [decimal](28, 8),
-	[CurrencyAmt] [decimal](28, 8),
-	[ConsoAmt] [decimal](28, 8),
-	[Quantity] [decimal](28, 8),
+	[CuryAmt] [decimal](21, 4),
+	[BaseAmt] [decimal](21, 4),
+	[ConsoAmt] [decimal](21, 4),
+	[Quantity] [decimal](25, 6),
 
 	--References
 	[CompanyID] [uniqueidentifier]  NULL,

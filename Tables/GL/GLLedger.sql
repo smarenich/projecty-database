@@ -4,7 +4,7 @@
 DROP TABLE IF EXISTS [dbo].[GLLedger];
 CREATE TABLE [dbo].[GLLedger](
 	[LedgerID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[LedgerCD] [nvarchar](30) NOT NULL,
+	[LedgerCD] [nvarchar](15) NOT NULL,
 	[Description] [nvarchar](60) NULL,
 
 	[Type] [char](1) NOT NULL, --Actual, Reporting, Statistical

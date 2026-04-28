@@ -5,16 +5,16 @@ DROP TABLE IF EXISTS [dbo].[SICompany];
 CREATE TABLE [dbo].[SICompany]
 (
 	[CompanyID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[CompanyCD] [nvarchar](30) NOT NULL,
+	[CompanyCD] [nvarchar](15) NOT NULL,
 	[Type] [char](1) NOT NULL, --C=Company, B=Branch
-	[Active] [bit] NOT NULL,
+	[Active] [bit] NOT NULL DEFAULT (0),
 	[Description] [nvarchar](60) NULL,
 
 	[ParentCompanyID] [uniqueidentifier] NULL, 
 	[BaseCurrencyID] [nvarchar](5) NULL,  --TODISCUSS Where to take base currency from?
   	[AccessRole] [uniqueidentifier] NULL,
 	
-	[LegalName] [nvarchar](60) NULL,
+	[LegalName] [nvarchar](256) NULL,
 	[TaxRegistrationID] [nvarchar](60) NULL,
   	[DefaultAddressID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Address and Back?
 	[DefaultContactID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Contact and Back?

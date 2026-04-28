@@ -12,8 +12,8 @@ CREATE TABLE [dbo].[GLBatch]
   
 
   
-	[BatchType] [varchar](3) NOT NULL,
-  [Description] [nvarchar](512) NULL,
+	[BatchType] [char](3) NOT NULL,
+    [Description] [nvarchar](256) NULL,
 
 	--Status
 	[Status] [char](1) NOT NULL,
@@ -47,15 +47,13 @@ CREATE TABLE [dbo].[GLBatch]
 	[SourceModule] [char](2) NULL,
 	[SourceBatchNumber] [nvarchar](15) NULL,
 
-	--Totals (Base Currency)
-	[CreditTotal] [decimal](28, 8) NULL,
-	[DebitTotal] [decimal](28, 8) NULL,
-	[ControlTotal] [decimal](28, 8) NULL,
-
-	--Totals (Transaction Currency)
-	[CreditTotalCury] [decimal](28, 8) NULL,
-	[DebitTotalCury] [decimal](28, 8) NULL,
-	[ControlTotalCury] [decimal](28, 8) NULL,
+	--Totals
+	[CuryCreditTotal] [decimal](21, 4) NULL,
+	[CreditTotal] [decimal](21, 4) NULL,
+	[CuryDebitTotal] [decimal](21, 4) NULL,
+	[DebitTotal] [decimal](21, 4) NULL,
+	[CuryControlTotal] [decimal](21, 4) NULL,
+	[ControlTotal] [decimal](21, 4) NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

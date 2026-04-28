@@ -9,10 +9,10 @@ CREATE TABLE [dbo].[SICurrencyRate]
 	[FromCurrencyID] [uniqueidentifier] NOT NULL,
 	[ToCurrencyID] [uniqueidentifier] NOT NULL,
 	[CurrencyRateType] [nvarchar](6) NULL,
-	[EffectiveDate] [smalldatetime] NULL,
+	[EffectiveDate] [date] NULL,
 	[MultiplyDivide] [char](1) NULL,
-	[Rate] [decimal](19, 8) NULL,
-	[RateReciprocal] [decimal](19, 8) NULL,
+	[Rate] [decimal](21, 8) NULL,
+	[RateReciprocal] [decimal](21, 8) NULL,
 
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,

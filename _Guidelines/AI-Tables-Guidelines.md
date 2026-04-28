@@ -59,18 +59,18 @@ Use `NEWSEQUENTIALID()` — never `NEWID()` — as the default for primary key c
 | Fixed-width type discriminator (suffix `…Type`) — 2-letter | `char` | `2` | `OrderType`, `POType`, `POReceiptType`, `EntityType` | Most common `…Type` width. |
 | Fixed-width type discriminator (suffix `…Type`) — 3-letter | `char` | `3` | `APDocType`, `ARDocType` | Used for document type codes. |
 | Status flag | `char` | `1` | `Status`, `DocStatus` | Single-letter codes (`H`, `O`, `C`, `V`). Use `char(2)` only if a two-letter status vocabulary is required. |
-| Description | `nvarchar` | `256` | `Description`, `TranDesc`, `Summary` | Use the name `Description` for 256-char descriptions. The name difference is meaningful. |
+| Description | `nvarchar` | `60` or `256` | `Description`, `TranDesc`, `Summary` | Use the name `Description` for 60 or 256-char descriptions. The name difference is meaningful. |
 | Comment / memo / reason field | `nvarchar` | `256` | `Comment`, `Memo`, `Reason`, `Message` | Use 256 for all new columns. Do not use 250/255 (legacy drift). |
 | Entity name (person, company, object) | `nvarchar` | `256` | `Name`, `CompanyName`, `ContactName` | |
 | Email address | `nvarchar` | `256` | `Email`, `EmailAddress` | |
 | URL / website | `nvarchar` | `256` | `URL`, `Website`, `WebSite` | |
-| Phone / fax number | `varchar` | `50` | `Phone`, `Fax`, `Mobile` | **`varchar`, not `nvarchar`.** Phone numbers are ASCII-only by policy. |
-| Phone country-code prefix | `varchar` | `3` | `PhoneCountryCode` | ASCII dial prefix. |
+| Phone / fax number | `nvarchar` | `50` | `Phone`, `Fax`, `Mobile` | |
+| Phone country-code prefix | `nvarchar` | `3` | `PhoneCountryCode` | ASCII dial prefix. |
 | Address line (street, line 1/2/3) | `nvarchar` | `70` | `AddressLine1`, `AddressLine2`, `AddressLine3` | Specific width — do not use 50 or 100. |
 | City | `nvarchar` | `50` | `City` | |
 | State / Province / Region (free-text) | `nvarchar` | `50` | `State`, `Province` | |
-| Country code (ISO 3166-1 alpha-2) | `char` | `2` | `CountryID` | **`char`, not `nvarchar`.** Always 2 ASCII uppercase letters. |
-| Postal / ZIP code | `varchar` | `20` | `PostalCode`, `ZipCode` | **`varchar`, not `nvarchar`.** ASCII-only. |
+| Country code (ISO 3166-1 alpha-2) | `nvarchar` | `2` | `CountryID` | Always 2 uppercase letters. |
+| Postal / ZIP code | `nvarchar` | `20` | `PostalCode`, `ZipCode` |  |
 | Currency code (ISO 4217 + custom) | `nvarchar` | `5` | `CuryID`, `BaseCuryID` | Always 5, never 3. |
 | Fiscal period | `char` | `6` | `FinPeriodID`, `PeriodID` | Format: `YYYYPP`. Always `char(6)`. |
 | Unit of measure | `nvarchar` | `6` | `UOM`, `TaxUOM`, `BaseUOM` | Always 6. No exceptions in modern code. |

@@ -9,15 +9,15 @@ CREATE TABLE [dbo].[GLAccount](
 	[CompanyID] [uniqueidentifier] NOT NULL, --Foreign Key to Company
 
 	[Type] [char](1) NOT NULL, --Income, Expense, Asset, Liability
-	[OffBalance] [bit] NOT NULL, 
+	[OffBalance] [bit] NOT NULL DEFAULT (0),
 	[Description] [nvarchar](60) NULL,
 	
 	[CurrencyID] [nvarchar](5) /*JSON*/ NULL,
 	[CuryRateTypeID] [uniqueidentifier] /*JSON*/ NULL,
 	
 	-- [DirectPost] [bit] /*JSON*/ NOT NULL, 
-	[ControlAccountModule] [bit] /*JSON*/ NOT NULL, --TOREVIEW Where to store in COA or Account?
-	[AllowManualEntry] [bit] /*JSON*/ NOT NULL, --TOREVIEW Where to store?
+	[ControlAccountModule] [bit] /*JSON*/ NOT NULL DEFAULT (0), --TOREVIEW Where to store in COA or Account?
+	[AllowManualEntry] [bit] /*JSON*/ NOT NULL DEFAULT (0), --TOREVIEW Where to store?
 
 	--TAGS
 

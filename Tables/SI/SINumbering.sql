@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS [dbo].[SINumbering];
 CREATE TABLE [dbo].[SINumbering]
 (
 	[NumberingID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[NumberingCD] [nvarchar](20) NOT NULL,
+	[NumberingCD] [nvarchar](15) NOT NULL,
 	[Description] [nvarchar](60) NULL,
 	[IsActive] [bit] NOT NULL DEFAULT (0),
 	--[NewSymbol] [nvarchar](15) NULL,
@@ -39,10 +39,10 @@ CREATE TABLE [dbo].[NumberingSequence]
 (
 	[NumberingID] [uniqueidentifier] NOT NULL,
 	[NumberingSequenceID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[SortOrder] [smallint] NULL,
+	[SortOrder] [int] NULL,
   
 	[BranchID] [uniqueidentifier] NULL,
-	[EffectiveDate] [smalldatetime] NULL,
+	[EffectiveDate] [date] NULL,
 
 	[StartNbr] [nvarchar](15) NOT NULL,
 	[EndNbr] [nvarchar](15) NOT NULL,	

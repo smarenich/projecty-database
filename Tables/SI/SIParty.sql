@@ -5,14 +5,14 @@ DROP TABLE IF EXISTS [dbo].[SIParty];
 CREATE TABLE [dbo].[SIParty] --TODISCUSS if Naming is right 
 (
 	[CompanyID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[CompanyCD] [nvarchar](30) NOT NULL,
+	[CompanyCD] [nvarchar](15) NOT NULL,
 	[Type] [char](1) NOT NULL,
-	[Active] [bit] NOT NULL,
+	[Active] [bit] NOT NULL DEFAULT (0),
 	[Description] [nvarchar](60) NULL,
 
 	[CurrencyID] [nvarchar](5) NULL,
-	[LegalName] [nvarchar](60) NULL,
-	[TaxRegistrationID] [nvarchar](60) NULL,
+	[LegalName] [nvarchar](256) NULL,
+	[TaxRegistrationID] [nvarchar](40) NULL,
 
 	[DefaultAddressID] [uniqueidentifier] NULL,
 	[DefaultContactID] [uniqueidentifier] NULL,

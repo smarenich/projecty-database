@@ -5,17 +5,17 @@ DROP TABLE IF EXISTS [dbo].[SICountry];
 CREATE TABLE [dbo].[SICountry]
 (
 	[CountryID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[CountryCD] [nvarchar](50) NOT NULL,
-	[Description] [nvarchar](60) NULL,
+	[CountryCD] [nvarchar](15) NOT NULL,
+	[Description] [nvarchar](256) NULL,
 
 	--Validation
 	[CountryRegexp] [nvarchar](255) NULL,
-	[ZipCodeRegexp] [varchar](255) NULL,
-	[ZipCodeMask] [varchar](50) NULL,
+	[ZipCodeRegexp] [nvarchar](255) NULL,
+	[ZipCodeMask] [nvarchar](50) NULL,
 	[IsTaxRegistrationRequired] [bit] NULL,
-	[PhoneCountryCode] [varchar](5) NULL,
-	[PhoneMask] [varchar](50) NULL,
-	[PhoneRegexp] [varchar](255) NULL,
+	[PhoneCountryCode] [nvarchar](5) NULL,
+	[PhoneMask] [nvarchar](50) NULL,
+	[PhoneRegexp] [nvarchar](255) NULL,
 
 	--Address
 	[AddressValidatorPluginID] [nvarchar](15) NULL,

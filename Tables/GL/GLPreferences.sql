@@ -4,14 +4,14 @@
 DROP TABLE IF EXISTS [dbo].[GLPreferences];
 CREATE TABLE [dbo].[GLPreferences] --TODO remove
 (
-	[PreferenceID] [uniqueidentifier] NOT NULL,
+	[PreferenceID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[CompanyID] [uniqueidentifier] NULL, --Company Specific Setting
 
 	[Name] [nvarchar](30) NOT NULL,
 	[Type] [nvarchar](30) NOT NULL,
-	[Description] [nvarchar](255) NOT NULL,
+	[Description] [nvarchar](256) NOT NULL,
 
-	[Value] [nvarchar](255) NOT NULL,
+	[Value] [nvarchar](256) NOT NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

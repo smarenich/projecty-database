@@ -12,9 +12,9 @@ CREATE TABLE [dbo].[SIAddress]
 
 	[IsActive] [bit] NOT NULL DEFAULT (1),
 	[AddressType] [char](2) NOT NULL, --Home, Business, Other
-	[AddressLine1] [nvarchar](50) NULL,
-	[AddressLine2] [nvarchar](50) NULL,
-	[AddressLine3] [nvarchar](50) NULL,
+	[AddressLine1] [nvarchar](70) NULL,
+	[AddressLine2] [nvarchar](70) NULL,
+	[AddressLine3] [nvarchar](70) NULL,
 	[City] [nvarchar](50) NULL,
 	[State] [nvarchar](50) NULL,
 	[CountryID] [nvarchar](2) NULL,
