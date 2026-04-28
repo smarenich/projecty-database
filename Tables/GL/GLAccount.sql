@@ -5,6 +5,9 @@ DROP TABLE IF EXISTS [dbo].[GLAccount];
 CREATE TABLE [dbo].[GLAccount](
 	[AccountID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[AccountCD] [nvarchar](15) NOT NULL,
+
+	[CompanyID] [uniqueidentifier] NOT NULL, --Foreign Key to Company
+
 	[Type] [char](1) NOT NULL, --Income, Expense, Asset, Liability
 	[OffBalance] [bit] NOT NULL, 
 	[Description] [nvarchar](60) NULL,
@@ -12,6 +15,10 @@ CREATE TABLE [dbo].[GLAccount](
 	[CurrencyID] [nvarchar](5) /*JSON*/ NULL,
 	[CuryRateTypeID] [uniqueidentifier] /*JSON*/ NULL,
 	
+	-- [DirectPost] [bit] /*JSON*/ NOT NULL, 
+	[ControlAccountModule] [bit] /*JSON*/ NOT NULL, --TOREVIEW Where to store in COA or Account?
+	[AllowManualEntry] [uniqueidentifier] /*JSON*/ NOT NULL, --TOREVIEW Where to store?
+
 	--TAGS
 
 	[CreatedByUserID] [uniqueidentifier] /*JSON*/ NOT NULL,

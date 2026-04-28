@@ -16,12 +16,12 @@ CREATE TABLE [dbo].[SICompany]
 	
 	[LegalName] [nvarchar](60) NULL,
 	[TaxRegistrationID] [nvarchar](60) NULL,
-
-    [ChartOfAccountsID] [uniqueidentifier] NOT NULL,
-	[LedgerID] [int] NULL, -- TODO Add a ledger dictionary
-
   	[DefaultAddressID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Address and Back?
 	[DefaultContactID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Contact and Back?
+
+	[YTDNetIncomeAccount] [uniqueidentifier] /*JSON*/ NOT NULL, --TODISCUSS can it be different per comapyn?
+	[RetainedEarningsAccountID] [uniqueidentifier] /*JSON*/ NOT NULL,
+	[TrialBalanceSign] [char](1) /*JSON*/ NOT NULL,
 
   
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

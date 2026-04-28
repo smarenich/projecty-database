@@ -1,14 +1,12 @@
 CREATE TABLE [dbo].[GLCompanyCalendar]
 (
+	[FinancialCalendarID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
     [CompanyID] [uniqueidentifier] NOT NULL,
-	--[FinancialCalendarID] [uniqueidentifier] NOT NULL,
-
-	[StartDate] [datetime] NOT NULL,
-	[EndDate] [datetime] NULL,  
+	[Description] [nvarchar](60) NULL,
 
 	[PeriodType] [char](1) NOT NULL,  -- M=Monthly, Q=Quarterly, W=Weekly, F=4-4-5/4-5-4/5-4-4, --C=Custom
-
-
+	[StartDate] [datetime] NOT NULL,
+	[EndDate] [datetime] NULL,  --Null when the current configuration.
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
@@ -24,7 +22,8 @@ CREATE TABLE [dbo].[GLCompanyCalendar]
   
 	CONSTRAINT [GGLCompanyCalendar_PK] PRIMARY KEY CLUSTERED
 	(
-		[CompanyID] ASC,
-    [FinancialCalendarID] ASC
+    	[FinancialCalendarID] ASC
 	),
 )
+CREATE NONCLUSTERED INDEX [GLCompanyCalendar_CompanyID_Index] ON [dbo].[APAdjust] ([CompanyID], [FinancialCalendarID])
+GO
