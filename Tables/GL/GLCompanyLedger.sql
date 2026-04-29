@@ -6,6 +6,8 @@ CREATE TABLE [dbo].[GLCompanyLedger](
 	[LedgerID] [uniqueidentifier] NOT NULL, --Foreign Key to Company
 	[CompanyID] [uniqueidentifier] NOT NULL, --Foreign Key to Company
 
+    [VisibilityMode] [char](1) NOT NULL, --C=Company Specific, V=Visible, R=Restricted
+
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,

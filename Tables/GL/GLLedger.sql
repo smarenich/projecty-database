@@ -7,9 +7,8 @@ CREATE TABLE [dbo].[GLLedger](
 	[LedgerCD] [nvarchar](15) NOT NULL,
 	[Description] [nvarchar](60) NULL,
 
-	[Type] [char](1) NOT NULL, --Actual, Reporting, Statistical
+	[Type] [char](1) NOT NULL, --Actual, Reporting, Statistical, Budget???
 	[BaseCurrencyID] [nvarchar](5) NULL, --TODISCUSS Where to take base currency from?
-
 
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,

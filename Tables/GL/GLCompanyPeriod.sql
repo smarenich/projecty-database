@@ -17,11 +17,11 @@ CREATE TABLE [dbo].[GLCompanyPeriod]
 	[PeriodNumber] [char](2) NOT NULL,
 
 	[Status] [char](1) NOT NULL,
-	[APStatus] [char](1) NOT NULL DEFAULT (0),
-	[ARStatus] [char](1) NOT NULL DEFAULT (0),
-	[INStatus] [char](1) NOT NULL DEFAULT (0),
-	[CAStatus] [char](1) NOT NULL DEFAULT (0),
-	--[FAStatus] [char](1) NOT NULL DEFAULT (0),
+	[APStatus] [char](1) /*JSON*/ NOT NULL DEFAULT (0),
+	[ARStatus] [char](1) /*JSON*/ NOT NULL DEFAULT (0),
+	[INStatus] [char](1) /*JSON*/ NOT NULL DEFAULT (0),
+	[CAStatus] [char](1) /*JSON*/ NOT NULL DEFAULT (0),
+	--[FAStatus] [char](1) /*JSON*/ NOT NULL DEFAULT (0),
 
 
 	--System

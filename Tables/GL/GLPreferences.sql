@@ -5,13 +5,15 @@ DROP TABLE IF EXISTS [dbo].[GLPreferences];
 CREATE TABLE [dbo].[GLPreferences] --TODO remove
 (
 	[PreferenceID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
-	[CompanyID] [uniqueidentifier] NULL, --Company Specific Setting
-
+	[CompanyID] [uniqueidentifier] NULL, --Company Specific Setting, NULL is global setting
+										 --TODISCUSS Store settings in JSON or Code?
 	[Name] [nvarchar](30) NOT NULL,
-	[Type] [nvarchar](30) NOT NULL,
+	[Category] [nvarchar](30) NOT NULL,
+	[DataType] [nvarchar](30) NOT NULL,
 	[Description] [nvarchar](256) NOT NULL,
+	[Tooltip] [nvarchar](MAX) NOT NULL,
 
-	[Value] [nvarchar](256) NOT NULL,
+	[JSON] [nvarchar](MAX) NOT NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

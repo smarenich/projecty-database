@@ -7,8 +7,9 @@ CREATE TABLE [dbo].[GLAccount](
 	[AccountCD] [nvarchar](15) NOT NULL,
 
 	[CompanyID] [uniqueidentifier] NOT NULL, --Foreign Key to Company
+	[VisibilityMode] [char](1) NOT NULL, --R=Restricted to All V=Visible to All
 
-	[Type] [char](1) NOT NULL, --Income, Expense, Asset, Liability
+	[Type] [char](1) NOT NULL, --Income, Expense, Asset, Liability, YTDNetIncome, RetainedEarnings
 	[OffBalance] [bit] NOT NULL DEFAULT (0),
 	[Description] [nvarchar](60) NULL,
 	
@@ -16,8 +17,10 @@ CREATE TABLE [dbo].[GLAccount](
 	[CuryRateTypeID] [uniqueidentifier] /*JSON*/ NULL,
 	
 	-- [DirectPost] [bit] /*JSON*/ NOT NULL, 
-	[ControlAccountModule] [bit] /*JSON*/ NOT NULL DEFAULT (0), --TOREVIEW Where to store in COA or Account?
-	[AllowManualEntry] [bit] /*JSON*/ NOT NULL DEFAULT (0), --TOREVIEW Where to store?
+	[ControlAccountModule] [bit] /*JSON*/ NOT NULL DEFAULT (0), 
+	[AllowManualEntry] [bit] /*JSON*/ NOT NULL DEFAULT (0),
+
+	--[TaxCategoryID] [uniqueidentifier] /*JSON*/ NULL, --TODO To be added with taxes
 
 	--TAGS
 
@@ -37,6 +40,7 @@ CREATE TABLE [dbo].[GLAccount](
 	),
 	UNIQUE NONCLUSTERED
 	(
+		[CompanyID] ASC,
 		[AccountCD] ASC
 	)
 )

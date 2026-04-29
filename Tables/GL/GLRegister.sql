@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
--- GLBatch
+-- GLRegister
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[GLBatch];
-CREATE TABLE [dbo].[GLBatch]
+DROP TABLE IF EXISTS [dbo].[GLRegister];
+CREATE TABLE [dbo].[GLRegister]
 (
 	[RecordID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	
@@ -10,50 +10,46 @@ CREATE TABLE [dbo].[GLBatch]
 	[Module] [char](2) NOT NULL, --Module
 	[RefNumber] [nvarchar](15) NOT NULL, -- Autonumbering
   
-
-  
-	[BatchType] [char](3) NOT NULL,
+  	[TranType] [char](1) NOT NULL, --Normal="H"; Consol="C"; TrialBalance="T"; Reclassification="R"; Allocation="A";
     [Description] [nvarchar](256) NULL,
 
 	--Status
 	[Status] [char](1) NOT NULL,
 	[Draft] [bit] NOT NULL DEFAULT (0),
 	[Released] [bit] NOT NULL DEFAULT (0),
+	[Posted] [bit] NOT NULL DEFAULT (0),
 	[Voided] [bit] NOT NULL DEFAULT (0),
 
 	--Settings
-	[AutoReverse] [bit] NULL,
-
-	[AdjustmentTran] [bit] NULL,
+	[AutoReverse] [bit] /*JSON*/ NULL,
+	[AutoReversingEntry] [bit] /*JSON*/ NULL,
 
 	--Date
-  [TranDate] [smalldatetime] NOT NULL,
+    [TranDate] [smalldatetime] NOT NULL,
 	[PostDate] [smalldatetime] NOT NULL,
-	[FinPeriodID] [char](6) NOT NULL,
-	[TranPeriodID] [char](6) NOT NULL,
+	[PeriodID] [char](6) NOT NULL,
 
 	--References
-	[BranchID] [uniqueidentifier] NOT NULL,
+	[CompanyID] [uniqueidentifier] NOT NULL,
 	[LedgerID] [uniqueidentifier] NOT NULL,
-	[CurrencyID] [nvarchar](5) NOT NULL,
-	[BaseCurrencyID] [nvarchar](5) NULL,
-	[CurrencyRateID] [uniqueidentifier] NULL,
 
-  --Document
+	--Currency
+	[CurrencyID] [nvarchar](5) NOT NULL,
+	[CurrencyRateTypeID] [nvarchar](6) /*JSON*/ NULL,
+	[EffDate] [smalldatetime] /*JSON*/ NULL,
+	[MultiplyDivide] [char](1) /*JSON*/ NULL,
+	[Rate] [decimal](19, 8) /*JSON*/ NULL,
+
+    --Document
 	[OrigRecordID] [uniqueidentifier]  NULL,
-	[OrigModule] [char](2) NULL,
-	[OrigBatchNumber] [nvarchar](15) NULL,
 	[SourceRecordID] [uniqueidentifier]  NULL,
-	[SourceModule] [char](2) NULL,
-	[SourceBatchNumber] [nvarchar](15) NULL,
+	[ExternalReferenceNumber] [nvarchar](30) NULL,
 
 	--Totals
 	[CuryCreditTotal] [decimal](21, 4) NULL,
 	[CreditTotal] [decimal](21, 4) NULL,
 	[CuryDebitTotal] [decimal](21, 4) NULL,
 	[DebitTotal] [decimal](21, 4) NULL,
-	[CuryControlTotal] [decimal](21, 4) NULL,
-	[ControlTotal] [decimal](21, 4) NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
@@ -64,7 +60,7 @@ CREATE TABLE [dbo].[GLBatch]
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 	[JSON] [nvarchar](MAX) NULL,
-  [Deleted] [bit] NOT NULL DEFAULT (0),
+	[Deleted] [bit] NOT NULL DEFAULT (0),
 
 	CONSTRAINT [GLBatch_PK] PRIMARY KEY CLUSTERED
 	(

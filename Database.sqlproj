@@ -101,13 +101,13 @@
     <Build Include="Tables\CS\CSBranch.sql" />
     <Build Include="Tables\CS\CSTerms.sql" />
     <Build Include="Tables\GL\GLAccount.sql" />
-    <Build Include="Tables\GL\GLBatch.sql" />
     <Build Include="Tables\GL\GLCompanyAccount.sql" />
     <Build Include="Tables\GL\GLCompanyCalendar.sql" />
     <Build Include="Tables\GL\GLCompanyLedger.sql" />
     <Build Include="Tables\GL\GLCompanyPeriod.sql" />
     <Build Include="Tables\GL\GLLedger.sql" />
     <Build Include="Tables\GL\GLPreferences.sql" />
+    <Build Include="Tables\GL\GLRegister.sql" />
     <Build Include="Tables\GL\GLTransaction.sql" />
     <Build Include="Tables\IN\INItem.sql" />
     <Build Include="Tables\IN\INWarehouse.sql" />

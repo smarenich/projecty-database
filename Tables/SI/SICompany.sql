@@ -11,20 +11,16 @@ CREATE TABLE [dbo].[SICompany]
 	[Description] [nvarchar](60) NULL,
 
 	[ParentCompanyID] [uniqueidentifier] NULL, 
-	[BaseCurrencyID] [nvarchar](5) NULL,  --TODISCUSS Where to take base currency from?
+	[BaseCurrencyID] [nvarchar](5) NULL,
   	[AccessRole] [uniqueidentifier] NULL,
 	
-	[LegalName] [nvarchar](256) NULL,
-	[TaxRegistrationID] [nvarchar](60) NULL,
-  	[DefaultAddressID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Address and Back?
-	[DefaultContactID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Contact and Back?
+	[LegalName] [nvarchar](256) /*JSON*/ NULL,
+	[TaxRegistrationID] [nvarchar](60) /*JSON*/ NULL,
+  	--[DefaultAddressID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Address and Back?
+	--[DefaultContactID] [uniqueidentifier] NULL, --TODISCUSS Do we need double links from Company to Contact and Back?
 
-	[YTDNetIncomeAccount] [uniqueidentifier] /*JSON*/ NOT NULL, --TODISCUSS can it be different per comapyn?
-	[RetainedEarningsAccountID] [uniqueidentifier] /*JSON*/ NOT NULL,
-	[TrialBalanceSign] [char](1) /*JSON*/ NOT NULL,
 
-  
-	[CreatedByUserID] [uniqueidentifier] NOT NULL,
+  	[CreatedByUserID] [uniqueidentifier] NOT NULL,
 	[CreatedFrom] [char](8) NOT NULL,
 	[CreatedAtDateTime] [datetime] NOT NULL,
 	[UpdatedByUserID] [uniqueidentifier] NOT NULL,
