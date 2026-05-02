@@ -119,8 +119,9 @@
     <Build Include="Tables\SI\SINumbering.sql" />
     <Build Include="Tables\SI\SIParty.sql" />
     <Build Include="Tables\SI\SIState.sql" />
-    <Build Include="Tables\SM\SMAllowedFileType.sql" />
     <Build Include="Tables\SM\SMFile.sql" />
+    <Build Include="Tables\SM\SMFileRevision.sql" />
+    <Build Include="Tables\SM\SMFileType.sql" />
     <Build Include="Tables\SM\SMLocale.sql" />
     <Build Include="Tables\SM\SMPreferences.sql" />
     <Build Include="Tables\SM\SMRole.sql" />

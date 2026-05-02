@@ -1,75 +1,33 @@
---
+# System Preferences
 
-Summary:
+This document defines the requirements for the ERP Preferences system.
 
-### Структура системных таблиц и универсальные идентификаторы
+---
 
-- Договорились использовать универсальный GUID-идентификатор для всех сущностей (документов и т.д.)
-- Планируется хранить дополнительную информацию о записях: тип записи, теги, комменты (как расширение notes и как лог событий), файлы-аттачменты, индексы для глобального поиска, кросс-линки между записями
-- Универсальные связи между записями позволят, например, находить все файлы по проекту или все документы (кейсы, ордера, шипменты, инвойсы) для конкретного клиента
+## Requirement 1: System Preferences
 
-### Подход к хранению настроек системы
+### Overview
+The system must provide a centralized preferences editor — similar in look and feel to VS Code Settings — with a global search across all preferences, category-based navigation, and per-company value overrides.
 
-- Обсуждались два типа настроек: UI-настройки (флажки, опции) и настройки-справочники (например, Chart of Accounts)
-- Предложена идея хранить настройки в базе данных с процессом публикации, который транслирует их в исполняемый код (аналогично константам)
-- Преимущества хранения в БД: удобство для бэкапа и переноса данных, поддержка консистентности, возможность универсального редактора
-- Процесс публикации позволяет явно применять изменения настроек через кнопку "Apply Settings"
+### Functionality
+* All configurable behavior in the ERP is expressed as named preferences organized into a two-level hierarchy: **Category → Preference**.
+* Each preference has a definition (name, category, data type, description, tooltip, and default value). Definitions are authored in code by the developer and synchronized into the database during the database update procedure.
+* Data Type is referred to a global list of possible data types, such as selectors, strings, integers, money and so on.
+* Each preference has a value stored per company. When no company-specific value exists, the system falls back to the default value from the definition. `SMPreferencesDefinition` stores default value, allowing to join `SMPreferencesValue` and use Coalesce for the company specific settings.
+* A preference value can **depend on a parent company's value** via `DependOnCompanyID` — changes to the parent automatically propagate to dependents, supporting inheritance across the company hierarchy. This part will be implemented in the business logic.
+* The UI operates in the context of the current company (analogous to AccessInfo in A). The programmer accesses preferences without specifying a company explicitly: `SMPreferences.Category.Property`. Company should be handled by the infrastructure.
+* Changes to preference values are applied explicitly through an **Apply Settings** action in the UI, making the effect of changes intentional and auditable.
 
-### Дизайн UI для настроек
+### Examples of Preferences
+`BatchNumberingID`, `RequireControlTotal`, `COAOrder`, `TrialBalanceSign`, `YtdNetIncAccountID`, `RetEarnAccountID`
 
-- Планируется реализовать интерфейс, похожий на Visual Studio: глобальный поиск, категории настроек, иерархическая структура
-- Глобальный поиск упростит работу по сравнению с текущим подходом Acumatica, где нет поиска по настройкам
+### SMPreferences Database Structure
 
-### Структура таблиц настроек
+[SMPreferencesDefinition](../tables/SM/SMPreferences.sql)
+[SMPreferencesValue](../tables/SM/SMPreferences.sql)
 
-- Предложена таблица SM Preferences с полями: company (опционально), имя настройки, категория, значение в JSON
-- Обсуждалась необходимость отдельной таблицы для definition настроек (категория, data type, description, tooltip) и таблицы для значений
-- Разделение на две таблицы позволит избежать дублирования метаданных для каждой компании
+**SMPreferencesDefinition** — one row per preference; holds metadata and the default value. Populated and updated by the database update procedure.
 
-### Debate: база данных vs JSON-файлы vs TypeScript код
+**SMPreferencesValue** — one row per preference per company; holds the company-specific override. `DependOnCompanyID` links to a parent company whose value is inherited automatically.
 
-- За хранение в БД: проще бэкап, синхронизация, один источник правды, возможность использования в DACs и отчетах
-- За JSON-файлы/код: меньше синхронизации, удобнее для разработчика, возможно быстрее загрузка
-- Согласились, что значения настроек удобнее хранить в базе данных
-
-### Производительность и загрузка настроек
-
-- Обсуждались варианты: загрузка при старте приложения vs ленивая загрузка
-- Предложено загружать настройки из базы данных в runtime вместо генерации TypeScript-файлов
-- Разница в производительности между загрузкой из БД и из TypeScript считается несущественной
-
-### Доступ к настройкам из кода
-
-- Синтаксис доступа будет одинаковым независимо от способа хранения (например, smpreferences.category.property)
-- Роутинг по компаниям будет реализован через контекст (аналог Access Info), программист не будет явно указывать компанию
-
-### Настройки по компаниям (branches)
-
-- Настройки могут быть глобальными или специфичными для компании/бранча
-- Значения по умолчанию: обсуждалось хранение дефолтных значений для случая, когда настройка не установлена
-- Предложено использовать company = null для дефолтных значений
-
-### Использование настроек в отчетах и DACs
-
-- В Acumatica редко используются join'ы к setup таблицам в отчетах; в основном для скрытия полей в зависимости от фич
-- Настройки в DACs и отчетах: можно передавать как параметры или делать join к таблице preferences
-- Предложено генерировать view'шки для удобного доступа к настройкам из запросов
-
-### Глобальный поиск
-
-- Хранение настроек в БД упрощает реализацию глобального поиска с единым UI
-- Семантический поиск требует, чтобы настройки хранились в том же формате, что и остальные данные, для корректного ранжирования результатов
-- Можно реализовать провайдеры данных для глобального поиска, которые читают из разных источников (БД, файлы, JSON-схемы)
-
-### Определение (definition) vs значения настроек
-[01-May-26 3:50 PM] Alexandr Nesvizhski: - Definition настроек (схема) должна быть в коде/JSON-схеме, создаваемой программистом
-- При создании новой базы данных definition разворачивается в таблицу настроек с дефолтными значениями
-- Значения настроек сохраняются в БД и могут различаться по компаниям
-- Вопрос синхронизации definition из кода в БД при обновлении версии требует отдельной процедуры
-
-### Открытые вопросы
-
-- Как именно реализовать синхронизацию схемы настроек между кодом и БД при апгрейдах
-- Нужно ли хранить metadata (категория, data type, description, tooltip) в БД или читать из JSON-схем
-- Детали реализации роутинга настроек по компаниям в коде
-- Как обрабатывать случаи, когда настройка вообще не установлена (значения по умолчанию)
+---

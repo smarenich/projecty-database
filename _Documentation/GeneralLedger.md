@@ -47,4 +47,40 @@ The system must provide a form to add and edit GL Accounts.
 
 ---
 
+## Requirement 3: GL Ledgers
+
+### Overview
+The system must provide a form to add and edit GL Ledgers.
+
+### Functionality
+* A Ledger is a named book of record with a defined purpose: Actual, Reporting, Statistical, or Budget.
+* Each Ledger has its own Base Currency, allowing parallel reporting in different currencies.
+* Ledgers are shared across companies; visibility per company is controlled through `GLCompanyLedger`.
+  * `VisibilityMode` controls whether a ledger is visible to all companies (V), restricted from a company (R), or scoped to a specific company only (C).
+
+### GLLedger Database Structure
+
+[GLLedger](../tables/GL/GLLedger.sql)
+[GLCompanyLedger](../tables/GL/GLCompanyLedger.sql)
+
+---
+
+## Requirement 4: Financial Calendar and Periods
+
+### Overview
+The system must provide a form to define fiscal calendars and generate financial periods per company.
+
+### Functionality
+* A Financial Calendar belongs to a Company and defines the period structure: Monthly, Quarterly, Weekly, 4-4-5 retail, or Custom.
+* A company may have multiple calendar records over time; `EndDate = NULL` marks the currently active configuration.
+* Financial Periods are generated from a calendar. Each period has a human-readable code (`FinPeriodCD`, format `YYYY` + 2-digit period number), start/end dates, year, and period number.
+* Each period carries an independent open/close status per sub-ledger module: GL, AP, AR, IN, CA — allowing modules to close at different times.
+
+### GLCompanyCalendar Database Structure
+
+[GLCompanyCalendar](../tables/GL/GLCompanyCalendar.sql)
+[GLCompanyPeriod](../tables/GL/GLCompanyPeriod.sql)
+
+---
+
 

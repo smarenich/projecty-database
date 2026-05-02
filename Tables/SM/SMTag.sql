@@ -7,7 +7,7 @@ CREATE TABLE [dbo].[SMTag]
 	[TagID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 	[TagCD] [nvarchar](15) NOT NULL,
 
-	[Type] [char](64) NULL, --Group of entities aby applicable scenarios 
+	[Scope] [char](64) NULL, --Group of entities aby applicable scenarios 
 		--Examples: Account, Warehouse, Cases, All Documents
 		--TOREVIEW Include in key?
 		--TOREVIEW Can be multiple types? Check Dualentry!

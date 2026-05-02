@@ -7,6 +7,8 @@ CREATE TABLE [dbo].[SYRecordReference]
 	[SourceRecordID] [uniqueidentifier] NOT NULL,
 	[DestRecordID] [uniqueidentifier] NOT NULL,
 
+	[Type] [char](1) NOT NULL, --Parent/Child, Related
+
 	CONSTRAINT [SYRecordReference_PK] PRIMARY KEY CLUSTERED
 	(
 		[SourceRecordID] ASC,
