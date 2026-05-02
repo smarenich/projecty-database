@@ -10,7 +10,7 @@ CREATE TABLE [dbo].[GLRegister]
 	[Module] [char](2) NOT NULL, --Module
 	[RefNumber] [nvarchar](15) NOT NULL, -- Autonumbering
   
-  	[TranType] [char](1) NOT NULL, --Normal="H"; Consol="C"; TrialBalance="T"; Reclassification="R"; Allocation="A";
+  	[DocType] [char](1) NOT NULL, --Normal="H"; Consol="C"; TrialBalance="T"; Reclassification="R"; Allocation="A";
     [Description] [nvarchar](256) NULL,
 
 	--Status
@@ -35,6 +35,7 @@ CREATE TABLE [dbo].[GLRegister]
 
 	--Currency
 	[CurrencyID] [nvarchar](5) NOT NULL,
+	[BaseCurrencyID] [nvarchar](5) NULL,
 	[CurrencyRateTypeID] [nvarchar](6) /*JSON*/ NULL,
 	[EffDate] [smalldatetime] /*JSON*/ NULL,
 	[MultiplyDivide] [char](1) /*JSON*/ NULL,

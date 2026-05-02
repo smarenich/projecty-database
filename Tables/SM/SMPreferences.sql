@@ -1,17 +1,39 @@
 ----------------------------------------------------------------
--- SMPreferences
+-- SMPreferencesDefinition
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS [dbo].[SMPreferences];
-CREATE TABLE [dbo].[SMPreferences]
+DROP TABLE IF EXISTS [dbo].[SMPreferencesDefinition];
+CREATE TABLE [dbo].[SMPreferencesDefinition]
 (
-	[FieldID] [uniqueidentifier] NOT NULL,
-	[FieldName] [varchar](30) NOT NULL,
-	[FielType] [varchar](30) NOT NULL,
+	[PreferenceID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
 
-	[ValueNumeric] [decimal](28, 8) NULL,
-	[ValueDate] [datetime] NULL,
-	[ValueString] [nvarchar](256) NULL,
-	[ValueText] [nvarchar](max) NULL,
+	[Name] [nvarchar](30) NOT NULL,
+	[Category] [nvarchar](30) NOT NULL,       --Read dynamically from JSON? Or dynamically update during database update procedure?
+	[DataType] [nvarchar](30) NOT NULL,	      --Read dynamically from JSON? Or dynamically update during database update procedure?
+	[Description] [nvarchar](256) NOT NULL,	  --Read dynamically from JSON? Or dynamically update during database update procedure?
+	[Tooltip] [nvarchar](MAX) NOT NULL,       --Read dynamically from JSON? Or dynamically update during database update procedure?
+
+	CONSTRAINT [GLPreferences_PK] PRIMARY KEY CLUSTERED
+	(
+		[PreferenceID] ASC
+	),
+	UNIQUE NONCLUSTERED
+	(
+		[Name] ASC
+	)
+)
+GO
+
+----------------------------------------------------------------
+-- SMPreferencesValue
+----------------------------------------------------------------
+DROP TABLE IF EXISTS [dbo].[SMPreferencesValue];
+CREATE TABLE [dbo].[SMPreferencesValue]
+(
+	[PreferenceID] [uniqueidentifier] NOT NULL, --Reference to SMPreferencesDefinition
+	[CompanyID] [uniqueidentifier] NULL, --Company Specific Setting, NULL is global setting
+
+	[ParentCompanyID] [uniqueidentifier] NULL, --Take the value from the ParentCompanyID
+	[Value] [jsonb] NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,
@@ -22,29 +44,19 @@ CREATE TABLE [dbo].[SMPreferences]
 	[UpdatedAtDateTime] [datetime] NOT NULL,
 	[Version] [rowversion] NULL,
 
-	CONSTRAINT [SMPreferences_PK] PRIMARY KEY CLUSTERED
+	CONSTRAINT [GLPreferences_PK] PRIMARY KEY CLUSTERED
 	(
-		[FieldID] ASC
+		[PreferenceID] ASC,
+		[CompanyID] ASC
 	),
-	UNIQUE NONCLUSTERED
-	(
-		[FieldName] ASC
-	)
 )
---INSERT INTO [dbo].[SMPreferences]
---([FieldID], [FieldName], [FielType], [ValueNumeric], [ValueDate], [ValueString], [ValueText], [CreatedByUserID], [CreatedFrom], [CreatedAtDateTime], [UpdatedByUserID], [UpdatedFrom], [UpdatedAtDateTime])
---SELECT NEWID(), 'MaxUploadSize','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'TimeZone','varchar(32)', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'HomePage','uniqueidentifier', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'PersonNameFormat','varchar(20)', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
-
---SELECT NEWID(), 'PasswordDayAge','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'PasswordMinLength','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'PasswordComplexity','bit', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'AccountLockoutThreshold','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'AccountLockoutDuration','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'AccountLockoutReset','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'PasswordSecurityType','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'MultiFactorAuthLevel','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
---SELECT NEWID(), 'MultiFactorAllowedTypes','int', NULL, NULL, NULL,NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
 GO
+
+--INSERT INTO [dbo].[GLPreferences]
+--([PreferenceID], [CompanyID] [Name], [Type], [Description], [Value], [CreatedByUserID], [CreatedFrom], [CreatedAtDateTime], [UpdatedByUserID], [UpdatedFrom], [UpdatedAtDateTime])
+--SELECT NEWID(), NULL, 'BatchNumberingID','uniqueidentifier', NULL, NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
+--SELECT NEWID(), NULL, 'RequireControlTotal','bit', NULL, NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
+--SELECT NEWID(), NULL, 'COAOrder','smallint', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
+--SELECT NEWID(), NULL, 'TrialBalanceSign','char(1)', NULL, NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
+--SELECT NEWID(), NULL, 'YtdNetIncAccountID','uniqueidentifier', NULL, NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()
+--SELECT NEWID(), NULL, 'RetEarnAccountID','uniqueidentifier', NULL, NULL, '00000000-0000-0000-0000-000000000000','SYSTEM', GETUTCDATE(), '00000000-0000-0000-0000-000000000000', 'SYSTEM', GETUTCDATE()

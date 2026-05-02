@@ -4,56 +4,60 @@
 DROP TABLE IF EXISTS [dbo].[GLTransaction];
 CREATE TABLE [dbo].[GLTransaction](
 	[RecordID] [uniqueidentifier] NOT NULL DEFAULT (newsequentialid()),
+	[ParentRecordID] [uniqueidentifier] NOT NULL, --GLRegister 
 
 	--References
 	[Module] [char](2) NOT NULL,
 	[RefNumber] [nvarchar](15) NOT NULL,
-	[LineNumber] [int] NOT NULL,
+	[LineOrder] [int] NOT NULL,
 	
-	[TranType] [char](3) NOT NULL,
+	[TranType] [char](3) NOT NULL, 
 	[Description] [nvarchar](256) NULL,
 
 	--Status
 	[Released] [bit] NOT NULL DEFAULT (0),
-	[Modified] [bit] NOT NULL DEFAULT (0),
+	[Posted] [bit] NOT NULL DEFAULT (0),
 
 	--Date
 	[TranDate] [smalldatetime] not null,
 	[PostDate] [smalldatetime] not null,
+	[PeriodID] [char](6) NOT NULL,
 
 	--Transaction
-	[BranchID] [uniqueidentifier] NOT NULL,
+	[CompanyID] [uniqueidentifier] NOT NULL,
 	[LedgerID] [uniqueidentifier] NOT NULL,
 	[AccountID] [uniqueidentifier] NOT NULL,
+
+	--Currency
 	[CurrencyID] [nvarchar](5) NOT NULL,
 	[BaseCurrencyID] [nvarchar](5) NULL,
-	[CurrencyRateID] [uniqueidentifier] NOT NULL,
+	[CurrencyRateTypeID] [nvarchar](6) /*JSON*/ NULL,
+	[EffDate] [smalldatetime] /*JSON*/ NULL,
+	[MultiplyDivide] [char](1) /*JSON*/ NULL,
+	[Rate] [decimal](19, 8) /*JSON*/ NULL,
 
 	--Amounts
 	[DrCr] [char](1) NOT NULL,
 	[CuryAmt] [decimal](21, 4),
 	[BaseAmt] [decimal](21, 4),
-	[ConsoAmt] [decimal](21, 4),
 	[Quantity] [decimal](25, 6),
 
 	--References
-	[CompanyID] [uniqueidentifier]  NULL,
-	[JobID] [uniqueidentifier]  NULL,
+	[PartyID] [uniqueidentifier]  NULL,
+	--[JobID] [uniqueidentifier]  NULL,
 	[EmployeeID] [uniqueidentifier] NULL,
-	[InventoryID] [uniqueidentifier] NULL,
-	[CostID] [uniqueidentifier] NULL,
-	[AssetID] [uniqueidentifier] NULL,
-	[ScheduleID] [uniqueidentifier] NULL,
+	[ItemID] [uniqueidentifier] NULL,
+	--[AssetID] [uniqueidentifier] NULL,
+	[ScheduleID] [uniqueidentifier] NULL, --Differed Revenue/Expenses
+	[TaxID] [uniqueidentifier] NULL,
 
 	--Documents
-	[OrigRecordID] [uniqueidentifier]  NULL,
+	[OrigRecordID] [uniqueidentifier] NULL,
 	[OrigModule] [char](2) NULL,
-	[OrigBatchNumber] [nvarchar](15) NULL,
-	[OrigLineNumber] [int] NULL,
+	[OrigRefNumber] [nvarchar](15) NULL,
 	[SourceRecordID] [uniqueidentifier]  NULL,
 	[SourceModule] [char](2) NULL,
-	[SourceBatchNumber] [nvarchar](15) NULL,
-	[SourceLineNumber] [int] NULL,
+	[SourceRefNumber] [nvarchar](15) NULL,
 
 	--System
 	[CreatedByUserID] [uniqueidentifier] NOT NULL,

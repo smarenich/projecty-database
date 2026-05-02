@@ -1,12 +1,10 @@
 # Database Schema — Column Type Selection Guide
  
-**Purpose:** When creating new tables or columns in the database schema, use this guide to choose the correct SQL type, length, and precision.
- 
-**General rules:**
-- Use `char(N)` for ASCII, system-controlled, fixed-width codes (status flags, type discriminators, screen IDs).
-- Use `nvarchar(N)` for user-entered values, natural keys, descriptions, and anything that may contain non-ASCII characters.
-- Use `nvarchar(max)` only for truly unbounded free text (notes, XML payloads, error bodies).
-- Never invent new widths when a convention exists below. Match the table exactly.
+**Purpose:** When creating new tables or columns in the database schema, use this guide to choose the correct table structure, SQL types, fields length and precision.
+
+**Definitions**
+- Table - Database table
+- Record - Any particular record in any database table. User RecordID as a link to the identifier of the record.
 
 ---
 
@@ -31,24 +29,12 @@ Use `NEWSEQUENTIALID()` — never `NEWID()` — as the default for primary key c
 
 ---
 
-## System Columns
-
-| Column purpose | Type | Length | Notes |
-|---|---|---|---|
-| ID | uniqueidentifier | | Not a string type — use native `uniqueidentifier`. |
-| CreatedByUserID | uniqueidentifier | | Always `uniqueidentifier` with link to the user table. |
-| CreatedFrom | char | 8 | Always 8. Format: 2 letters + 6 digits (e.g. `AR301000`). Never use `nvarchar`. |
-| CreatedAtDateTime | datetime | | Always `datetime` with UTC timezone. |
-| UpdatedByUserID | uniqueidentifier | | Always `uniqueidentifier` with link to the user table. |
-| UpdatedFrom | char | 8 | Always 8. Format: 2 letters + 6 digits (e.g. `AR301000`). Never use `nvarchar`. |
-| UpdatedAtDateTime | datetime | | Always `datetime` with UTC timezone. |
-| Version | rowversion | | Record version for optimistic concurrency control. |
-| JSON | nvarchar | MAX | Storage for custom columns. |
-| Deleted | bit | | Soft-delete flag. `NOT NULL DEFAULT 0`. Never physically delete rows; set to `1` instead. |
-
----
-
 ## String Columns: Type and Length Selection
+
+- Use `char(N)` for ASCII, system-controlled, fixed-width codes (status flags, type discriminators, screen IDs).
+- Use `nvarchar(N)` for user-entered values, natural keys, descriptions, and anything that may contain non-ASCII characters.
+- Don't use `varchar(N)` for any column types.
+- Never invent new widths when a convention exists below. Match the table exactly.
  
 | Column purpose / naming pattern | Type | Length | Example columns | Notes |
 |---|---|---|---|---|
@@ -139,4 +125,21 @@ Every monetary amount column that can be expressed in a transaction currency **m
 | Audit / system timestamp (`CreatedAtDateTime`, `UpdatedAtDateTime`) | `datetime` | Always stored in UTC. See Table 1. |
 | Document / business date (`DocDate`, `DueDate`, `ClosedDate`, `PostDate`) | `smalldatetime` | Second-level precision is unnecessary for business dates; `smalldatetime` is acceptable. Use `datetime` if time-of-day must be captured. |
 | Date-only value (no time component needed) | `date` | Use only when the column must be purely a calendar date and a time part would be misleading (e.g. `BirthDate`, `EffectiveDate`). |
+
+---
+
+## System Columns
+
+| Column purpose | Type | Length | Notes |
+|---|---|---|---|
+| ID | uniqueidentifier | | Not a string type — use native `uniqueidentifier`. |
+| CreatedByUserID | uniqueidentifier | | Always `uniqueidentifier` with link to the user table. |
+| CreatedFrom | char | 8 | Always 8. Format: 2 letters + 6 digits (e.g. `AR301000`). Never use `nvarchar`. |
+| CreatedAtDateTime | datetime | | Always `datetime` with UTC timezone. |
+| UpdatedByUserID | uniqueidentifier | | Always `uniqueidentifier` with link to the user table. |
+| UpdatedFrom | char | 8 | Always 8. Format: 2 letters + 6 digits (e.g. `AR301000`). Never use `nvarchar`. |
+| UpdatedAtDateTime | datetime | | Always `datetime` with UTC timezone. |
+| Version | rowversion | | Record version for optimistic concurrency control. |
+| JSON | nvarchar | MAX | Storage for custom columns. |
+| Deleted | bit | | Soft-delete flag. `NOT NULL DEFAULT 0`. Never physically delete rows; set to `1` instead. |
 
